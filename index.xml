@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Null0 Labs</title>
+    <link>https://null0labs.com/</link>
+    <description>Recent content on Null0 Labs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>yt@null0labs.com (NULL0 LABS)</managingEditor>
+    <webMaster>yt@null0labs.com (NULL0 LABS)</webMaster>
+    <copyright>© 2025 NULL0 LABS</copyright>
+    <lastBuildDate>Fri, 18 Jul 2025 00:40:04 -0700</lastBuildDate><atom:link href="https://null0labs.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Router on a Stick – Inter-VLAN Routing Made Ridiculously Clear</title>
+      <link>https://null0labs.com/videos/router-on-a-stick/</link>
+      <pubDate>Fri, 18 Jul 2025 00:40:04 -0700</pubDate>
+      <author>yt@null0labs.com (NULL0 LABS)</author>
+      <guid>https://null0labs.com/videos/router-on-a-stick/</guid>
+      <description></description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://null0labs.com/videos/router-on-a-stick/feature.png" />
+    </item>
+    
+    <item>
+      <title>Cisco VTP Version 3 | The VLAN Sync King</title>
+      <link>https://null0labs.com/videos/cisco-vtp-v3/</link>
+      <pubDate>Thu, 17 Jul 2025 00:40:04 -0700</pubDate>
+      <author>yt@null0labs.com (NULL0 LABS)</author>
+      <guid>https://null0labs.com/videos/cisco-vtp-v3/</guid>
+      <description></description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://null0labs.com/videos/cisco-vtp-v3/feature.png" />
+    </item>
+    
+    <item>
+      <title>Networking Basics: Switching</title>
+      <link>https://null0labs.com/videos/networking-basics-switching/</link>
+      <pubDate>Wed, 16 Jul 2025 00:40:04 -0700</pubDate>
+      <author>yt@null0labs.com (NULL0 LABS)</author>
+      <guid>https://null0labs.com/videos/networking-basics-switching/</guid>
+      <description></description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://null0labs.com/videos/networking-basics-switching/featured.jpg" />
+    </item>
+    
+    <item>
+      <title>Building the Wireshark Lab</title>
+      <link>https://null0labs.com/videos/building-the-wireshark-lab/</link>
+      <pubDate>Sun, 13 Jul 2025 00:40:04 -0700</pubDate>
+      <author>yt@null0labs.com (NULL0 LABS)</author>
+      <guid>https://null0labs.com/videos/building-the-wireshark-lab/</guid>
+      <description></description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://null0labs.com/videos/building-the-wireshark-lab/feature.jpg" />
+    </item>
+    
+    <item>
+      <title>ISP-Level Redundancy: Building Dual-Homed Internet P2</title>
+      <link>https://null0labs.com/videos/dual-homed-internet-p2/</link>
+      <pubDate>Sun, 13 Jul 2025 00:40:04 -0700</pubDate>
+      <author>yt@null0labs.com (NULL0 LABS)</author>
+      <guid>https://null0labs.com/videos/dual-homed-internet-p2/</guid>
+      <description></description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://null0labs.com/videos/dual-homed-internet-p2/feature.jpg" />
+    </item>
+    
+    <item>
+      <title>ISP-Level Redundancy: Building Dual-Homed Internet P1</title>
+      <link>https://null0labs.com/videos/dual-homed-internet-p1/</link>
+      <pubDate>Fri, 11 Jul 2025 00:40:04 -0700</pubDate>
+      <author>yt@null0labs.com (NULL0 LABS)</author>
+      <guid>https://null0labs.com/videos/dual-homed-internet-p1/</guid>
+      <description></description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://null0labs.com/videos/dual-homed-internet-p1/feature.jpg" />
+    </item>
+    
+    <item>
+      <title>About Me</title>
+      <link>https://null0labs.com/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>yt@null0labs.com (NULL0 LABS)</author>
+      <guid>https://null0labs.com/about/</guid>
+      <description></description>
+      
+    </item>
+    
+  </channel>
+</rss>
