@@ -33,6 +33,12 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://null0labs.com/blog/</loc>
+    <lastmod>2025-07-13T00:40:04-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://null0labs.com/videos/building-the-wireshark-lab/</loc>
     <lastmod>2025-07-13T00:40:04-07:00</lastmod>
     <changefreq>daily</changefreq>
@@ -40,6 +46,12 @@
   </url>
   <url>
     <loc>https://null0labs.com/videos/dual-homed-internet-p2/</loc>
+    <lastmod>2025-07-13T00:40:04-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://null0labs.com/blog/vrf-lite-routing/</loc>
     <lastmod>2025-07-13T00:40:04-07:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>

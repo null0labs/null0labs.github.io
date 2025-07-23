@@ -14,15 +14,15 @@
   <meta name="theme-color">
 
   
-  <title>Networking Basics: Switching &middot; Null0 Labs</title>
-    <meta name="title" content="Networking Basics: Switching &middot; Null0 Labs">
+  <title>Routing with VRF-Lite: A Lab Showcase &middot; Null0 Labs</title>
+    <meta name="title" content="Routing with VRF-Lite: A Lab Showcase &middot; Null0 Labs">
 
   
   <meta name="description" content="Engineering networks. One loopback at a time.">
-  <meta name="keywords" content="switching,vlan,cisco,">
+  <meta name="keywords" content="vrf-lite,routing,blog,">
   
   
-  <link rel="canonical" href="https://null0labs.com/videos/networking-basics-switching/">
+  <link rel="canonical" href="https://null0labs.com/blog/vrf-lite-routing/">
   
   
   
@@ -94,52 +94,49 @@
   
 
   
-  <meta property="og:url" content="https://null0labs.com/videos/networking-basics-switching/">
+  <meta property="og:url" content="https://null0labs.com/blog/vrf-lite-routing/">
   <meta property="og:site_name" content="Null0 Labs">
-  <meta property="og:title" content="Networking Basics: Switching">
+  <meta property="og:title" content="Routing with VRF-Lite: A Lab Showcase">
   <meta property="og:description" content="Engineering networks. One loopback at a time.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
-    <meta property="article:section" content="videos">
-    <meta property="article:published_time" content="2025-07-16T00:40:04-07:00">
-    <meta property="article:modified_time" content="2025-07-16T00:40:04-07:00">
-    <meta property="article:tag" content="Switching">
-    <meta property="article:tag" content="Vlan">
-    <meta property="article:tag" content="Cisco">
-    <meta property="og:image" content="https://null0labs.com/videos/networking-basics-switching/featured.jpg">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2025-07-13T00:40:04-07:00">
+    <meta property="article:modified_time" content="2025-07-13T00:40:04-07:00">
+    <meta property="article:tag" content="Vrf-Lite">
+    <meta property="article:tag" content="Routing">
+    <meta property="article:tag" content="Blog">
 
   
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://null0labs.com/videos/networking-basics-switching/featured.jpg">
-  <meta name="twitter:title" content="Networking Basics: Switching">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Routing with VRF-Lite: A Lab Showcase">
   <meta name="twitter:description" content="Engineering networks. One loopback at a time.">
-<meta name="twitter:image" content="https://null0labs.com/videos/networking-basics-switching/featured.jpg">
-    <meta property="og:image" content="https://null0labs.com/videos/networking-basics-switching/featured.jpg">
+
   <script type="application/ld+json">
   [{
     "@context": "https://schema.org",
     "@type": "Article",
-    "articleSection": "Videos",
-    "name": "Networking Basics: Switching",
-    "headline": "Networking Basics: Switching",
+    "articleSection": "Blog",
+    "name": "Routing with VRF-Lite: A Lab Showcase",
+    "headline": "Routing with VRF-Lite: A Lab Showcase",
     
     
     "inLanguage": "en",
-    "url" : "https:\/\/null0labs.com\/videos\/networking-basics-switching\/",
+    "url" : "https:\/\/null0labs.com\/blog\/vrf-lite-routing\/",
     "author" : {
       "@type": "Person",
       "name": "NULL0 LABS"
     },
     "copyrightYear": "2025",
-    "dateCreated": "2025-07-16T00:40:04-07:00",
-    "datePublished": "2025-07-16T00:40:04-07:00",
+    "dateCreated": "2025-07-13T00:40:04-07:00",
+    "datePublished": "2025-07-13T00:40:04-07:00",
     
-    "dateModified": "2025-07-16T00:40:04-07:00",
+    "dateModified": "2025-07-13T00:40:04-07:00",
     
-    "keywords": ["switching","vlan","cisco"],
+    "keywords": ["vrf-lite","routing","blog"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "105"
+    "wordCount": "693"
   }]
   </script>
 
@@ -561,15 +558,15 @@
 
   
   <li class="inline">
-    <a class="hover:underline decoration-neutral-300 dark:underline-neutral-600" href="/videos/"
-      >Videos</a
+    <a class="hover:underline decoration-neutral-300 dark:underline-neutral-600" href="/blog/"
+      >Blog</a
     ><span class="px-1 text-primary-500">/</span>
   </li>
 
   
   <li class="hidden">
-    <a class="hover:underline decoration-neutral-300 dark:underline-neutral-600" href="/videos/networking-basics-switching/"
-      >Networking Basics: Switching</a
+    <a class="hover:underline decoration-neutral-300 dark:underline-neutral-600" href="/blog/vrf-lite-routing/"
+      >Routing with VRF-Lite: A Lab Showcase</a
     ><span class="px-1 text-primary-500">/</span>
   </li>
 
@@ -578,7 +575,7 @@
 
       
       <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
-        Networking Basics: Switching
+        Routing with VRF-Lite: A Lab Showcase
       </h1>
       <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
         
@@ -627,7 +624,7 @@
   <div class="flex flex-row flex-wrap items-center">
     
     
-      <time datetime="2025-07-16T00:40:04-07:00">16 July 2025</time>
+      <time datetime="2025-07-13T00:40:04-07:00">13 July 2025</time>
     
 
     
@@ -644,20 +641,6 @@
       
         
           
-            
-              <span
-                class="mr-2 mt-[0.5rem]"
-                onclick="window.open(&#34;/categories/tutorial/&#34;,'_self');return false;">
-                <span class="flex cursor-pointer">
-  <span
-    class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    Tutorial
-  </span>
-</span>
-
-              </span>
-            
-          
         
       
         
@@ -667,11 +650,11 @@
             
               <span
                 class="mr-2 mt-[0.5rem]"
-                onclick="window.open(&#34;/tags/switching/&#34;,'_self');return false;">
+                onclick="window.open(&#34;/tags/vrf-lite/&#34;,'_self');return false;">
                 <span class="flex cursor-pointer">
   <span
     class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    Switching
+    Vrf-Lite
   </span>
 </span>
 
@@ -679,11 +662,11 @@
             
               <span
                 class="mr-2 mt-[0.5rem]"
-                onclick="window.open(&#34;/tags/vlan/&#34;,'_self');return false;">
+                onclick="window.open(&#34;/tags/routing/&#34;,'_self');return false;">
                 <span class="flex cursor-pointer">
   <span
     class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    Vlan
+    Routing
   </span>
 </span>
 
@@ -691,11 +674,11 @@
             
               <span
                 class="mr-2 mt-[0.5rem]"
-                onclick="window.open(&#34;/tags/cisco/&#34;,'_self');return false;">
+                onclick="window.open(&#34;/tags/blog/&#34;,'_self');return false;">
                 <span class="flex cursor-pointer">
   <span
     class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
-    Cisco
+    Blog
   </span>
 </span>
 
@@ -728,6 +711,80 @@
 
     <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
       
+        <div class="order-first lg:ml-auto px-0 lg:order-last ltr:lg:pl-8 rtl:lg:pr-8">
+          <div
+            class="toc ltr:pl-5 rtl:pr-5 print:hidden lg:sticky 
+              lg:top-10
+            
+            ">
+            
+              <details
+  open
+  id="TOCView"
+  class="toc-right mt-0 overflow-y-auto overscroll-contain scrollbar-thin scrollbar-track-neutral-200 scrollbar-thumb-neutral-400 dark:scrollbar-track-neutral-800 dark:scrollbar-thumb-neutral-600 rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 hidden lg:block">
+  <summary
+    class="block py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    Table of Contents
+  </summary>
+  <div
+    class="min-w-[220px] py-2 border-dotted ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-is-vrf-lite">What is VRF-Lite?</a></li>
+    <li><a href="#core-benefits">Core Benefits:</a></li>
+    <li><a href="#lab-topology-overview">Lab Topology Overview</a></li>
+    <li><a href="#color-code">Color Code:</a></li>
+    <li><a href="#key-interconnects">Key Interconnects:</a></li>
+    <li><a href="#under-the-hood-key-configuration-highlights">Under the Hood: Key Configuration Highlights</a>
+      <ul>
+        <li><a href="#vrf-definition-on-p1">VRF Definition on P1</a></li>
+      </ul>
+    </li>
+    <li><a href="#subinterfaces-with-encapsulation--routing">Subinterfaces with Encapsulation &amp; Routing</a></li>
+    <li><a href="#vrf-scoped-ospf">VRF-Scoped OSPF</a></li>
+    <li><a href="#real-world-implications">Real-World Implications</a></li>
+    <li><a href="#validation-and-output">Validation and Output</a></li>
+    <li><a href="#final-thoughts">Final Thoughts</a></li>
+  </ul>
+</nav>
+  </div>
+</details>
+<details class="toc-inside mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 lg:hidden">
+  <summary
+    class="py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    Table of Contents
+  </summary>
+  <div
+    class="py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-is-vrf-lite">What is VRF-Lite?</a></li>
+    <li><a href="#core-benefits">Core Benefits:</a></li>
+    <li><a href="#lab-topology-overview">Lab Topology Overview</a></li>
+    <li><a href="#color-code">Color Code:</a></li>
+    <li><a href="#key-interconnects">Key Interconnects:</a></li>
+    <li><a href="#under-the-hood-key-configuration-highlights">Under the Hood: Key Configuration Highlights</a>
+      <ul>
+        <li><a href="#vrf-definition-on-p1">VRF Definition on P1</a></li>
+      </ul>
+    </li>
+    <li><a href="#subinterfaces-with-encapsulation--routing">Subinterfaces with Encapsulation &amp; Routing</a></li>
+    <li><a href="#vrf-scoped-ospf">VRF-Scoped OSPF</a></li>
+    <li><a href="#real-world-implications">Real-World Implications</a></li>
+    <li><a href="#validation-and-output">Validation and Output</a></li>
+    <li><a href="#final-thoughts">Final Thoughts</a></li>
+  </ul>
+</nav>
+  </div>
+</details>
+
+
+
+            
+            
+          </div>
+        </div>
+      
 
 
       <div class="min-w-0 min-h-0 max-w-fit">
@@ -736,60 +793,251 @@
 
 
         <div class="article-content max-w-prose mb-20">
-          <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/pSJ3oyQ7gkI?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
-    </div>
+          <p>In a world where multi-tenancy is standard and overlapping IP addressing is a common reality, Virtual Routing and Forwarding Lite (VRF-Lite) emerges as a clean and powerful solution. Whether you&rsquo;re an enterprise splitting departments or a service provider managing distinct customers, VRF-Lite can streamline your architecture—without extra hardware overhead.</p>
+<p>Today, I’m showcasing a lab I designed that demonstrates how VRF-Lite achieves traffic isolation and address overlap in a Tiered ISP environment. This topology simulates two different customers using the same IP space, and yet, thanks to VRF-Lite, they remain entirely segregated.</p>
 
-
-<h1 class="relative group"> 
-    <div id="" class="anchor"></div>
+<h2 class="relative group">What is VRF-Lite? 
+    <div id="what-is-vrf-lite" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#" aria-label="Anchor">#</a>
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#what-is-vrf-lite" aria-label="Anchor">#</a>
     </span>        
     
-</h1>
-<p>In this video we cover the basics of switching. Layer2 Mac addresses, VLANS, access ports, trunk ports, STP and some ether channel. its a long video but it should give you a understanding of network switching at a practical level. Please like and subscribe I learnt a lot about trying to record this information and just how hard it is. The next video will cover basics of routing and the firewall.
-Then we can start the fun labs.</p>
+</h2>
+<p>VRF-Lite allows a single physical router to support multiple, isolated routing tables. Think of it like creating mini-routers inside one chassis—each with its own interfaces, routing protocols, and forwarding decisions.</p>
 
-<h1 class="relative group"> 
-    <div id="" class="anchor"></div>
+<h2 class="relative group">Core Benefits: 
+    <div id="core-benefits" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#" aria-label="Anchor">#</a>
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#core-benefits" aria-label="Anchor">#</a>
     </span>        
     
-</h1>
-<p>🛠️  Stuff I Use 🛠️</p>
+</h2>
 <ul>
-<li>EVE-NG - multivendor network emulation software.</li>
-<li>Linux, Ubuntu, Debian</li>
-<li>OSX, Windows</li>
-<li>Networking hardware - Multi vendor</li>
+<li>Traffic Separation: Prevents cross-talk between customers.</li>
+<li>Address Overlap: Enables duplicate IP ranges across VRFs.</li>
+<li>Efficiency: Removes the need for dedicated routers per tenant.</li>
 </ul>
 
-<h1 class="relative group"> 
-    <div id="" class="anchor"></div>
+<h2 class="relative group">Lab Topology Overview 
+    <div id="lab-topology-overview" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#" aria-label="Anchor">#</a>
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#lab-topology-overview" aria-label="Anchor">#</a>
     </span>        
     
-</h1>
-<a
-  class="!rounded-md bg-primary-600 px-4 py-2 !text-neutral !no-underline hover:!bg-primary-500 dark:bg-primary-800 dark:hover:!bg-primary-700"
-  href="https://www.youtube.com/@null0labs?sub_confirmation=1"
-  target="_self"
-  
-  role="button">
-  
-Subscribe on YouTube
+</h2>
+<p>
 
-</a>
 
+
+
+
+
+<figure>
+      <img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt="alt"
+    srcset="
+      /blog/vrf-lite-routing/image1_hu_73fa3c82a82aed73.png  330w,
+      /blog/vrf-lite-routing/image1_hu_5efc478cb8545211.png  660w,
+      /blog/vrf-lite-routing/image1_hu_e2514577fbe8a40d.png 1280w
+    "
+    data-zoom-src="/blog/vrf-lite-routing/image1.png"
+    src="/blog/vrf-lite-routing/image1.png">
+
+  
+</figure>
+
+Lab Overview 2 customers with over lapping IP ranges</p>
+<p>The diagram illustrates a provider edge (P1) router connected to two customer sites: CustA_1 and CustB_1, both using identical addressing schemes but operating in complete isolation via VRFs.</p>
+
+<h2 class="relative group">Color Code: 
+    <div id="color-code" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#color-code" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<ul>
+<li>🟢 CUST-A (Green VRF)</li>
+<li>🟣 CUST-B (Purple VRF)</li>
+</ul>
+
+<h2 class="relative group">Key Interconnects: 
+    <div id="key-interconnects" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#key-interconnects" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>Gig0/0.1 (dot1Q 100) → VRF CUST-A
+Gig0/0.2 (dot1Q 200) → VRF CUST-B
+Gig0/1 → Link to CustA_1
+Gig0/2 → Link to CustB_1</p>
+<p>Both customers have routers using the same loopback subnet 192.168.10.0/24, showcasing that overlapping IPs are fully viable with VRF-Lite.</p>
+
+<h2 class="relative group">Under the Hood: Key Configuration Highlights 
+    <div id="under-the-hood-key-configuration-highlights" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#under-the-hood-key-configuration-highlights" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+
+<h3 class="relative group">VRF Definition on P1 
+    <div id="vrf-definition-on-p1" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#vrf-definition-on-p1" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>ip vrf CUST-A
+ip vrf CUST-B</p>
+
+<h2 class="relative group">Subinterfaces with Encapsulation &amp; Routing 
+    <div id="subinterfaces-with-encapsulation--routing" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#subinterfaces-with-encapsulation--routing" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<pre tabindex="0"><code>interface Gig0/0.1
+ encapsulation dot1Q 100
+ ip vrf forwarding CUST-A
+ ip address 10.1.1.1 255.255.255.252
+ ip ospf 1 area 0
+</code></pre><pre tabindex="0"><code>interface Gig0/0.2
+ encapsulation dot1Q 200
+ ip vrf forwarding CUST-B
+ ip address 10.1.1.1 255.255.255.252
+ ip ospf 2 area 0
+</code></pre>
+<h2 class="relative group">VRF-Scoped OSPF 
+    <div id="vrf-scoped-ospf" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#vrf-scoped-ospf" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<pre tabindex="0"><code>router ospf 1 vrf CUST-A
+router ospf 2 vrf CUST-B
+</code></pre><p>With VRF-bound OSPF processes, each customer operates in their own logical routing domain—even running the same protocols without collision.</p>
+
+<h2 class="relative group">Real-World Implications 
+    <div id="real-world-implications" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#real-world-implications" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>Using this technique, providers can easily deliver Layer 3 services to multiple customers with absolute isolation. Imagine an IXP or Tier 2 ISP who connects dozens of enterprises—each running the same 192.168.X.X ranges internally. VRF-Lite is your safety net.</p>
+
+<h2 class="relative group">Validation and Output 
+    <div id="validation-and-output" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#validation-and-output" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>Wireshark Snapshot: Ping from CustA_1 Loopback to CustA_2g from CustA_1 Loopback to CustA_2
+
+
+
+
+
+
+
+<figure>
+      <img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt="alt"
+    srcset="
+      /blog/vrf-lite-routing/image2_hu_750b20dc6babc93b.png  330w,
+      /blog/vrf-lite-routing/image2_hu_4948c40017a1d66e.png  660w,
+      /blog/vrf-lite-routing/image2_hu_2c0220f88f6e7e74.png 1280w
+    "
+    data-zoom-src="/blog/vrf-lite-routing/image2.png"
+    src="/blog/vrf-lite-routing/image2.png">
+
+  
+</figure>
+</p>
+<p>You see the traffic is isolated within VLAN 100 on the link between P1 and P2</p>
+<pre tabindex="0"><code>Ping Output (CustA_1 → CustA_2)
+CustA_1#ping 192.168.11.1 repeat 5
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.11.1, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 2/2/2 ms
+</code></pre><pre tabindex="0"><code>Traceroute Snapshot (CustA_1 → CustA_2)
+CustA_1#traceroute 192.168.11.1
+Type escape sequence to abort.
+Tracing the route to 192.168.11.1
+VRF info: (vrf in name/id, vrf out name/id)
+  1 10.10.10.1 1 msec 2 msec 1 msec
+  2 10.1.1.2 2 msec 2 msec 2 msec
+  3 10.10.20.2 3 msec 3 msec *
+</code></pre><p>Below showing the independent routing tables for CUST-A and CUST-B. Despite using overlapping address spaces, the P1 router handles each customer’s routes within their dedicated VRFs—ensuring no crossover or leakage.</p>
+<p>Default Routing Table (Global)</p>
+<pre tabindex="0"><code>P1#show ip route
+Empty
+</code></pre><pre tabindex="0"><code>VRF-Specific Routing Table: CUST-A
+P1#show ip route vrf CUST-A
+
+Routing Table: CUST-A
+&lt;...routing codes...&gt;
+10.1.1.0/30       → Connected via Gi0/0.1
+192.168.10.1/32   → Learned via OSPF from CustA_1
+192.168.11.1/32   → Learned from remote CustA site
+
+VRF-Specific Routing Table: CUST-B
+P1#show ip route vrf CUST-B
+
+Routing Table: CUST-B
+&lt;...routing codes...&gt;
+10.1.1.0/30       → Connected via Gi0/0.2
+192.168.10.1/32   → Learned via OSPF from CustB_1
+192.168.11.1/32   → Learned from remote CustB site
+</code></pre><p>Conclusion: the output confirms that traffic for each customer is strictly confined to their respective VRF routing tables, even though they both use the 192.168.10.0/32 and 192.168.11.0/32 spaces. Nice 😊</p>
+
+<h2 class="relative group">Final Thoughts 
+    <div id="final-thoughts" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#final-thoughts" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>VRF-Lite may be “lite” in name, but its impact on routing architectures is anything but. If you’re working on lab environments in EVE-NG or simulating a multi-customer ISP scenario, this is a vital tool in your kit. And best of all—it&rsquo;s scalable, elegant, and battle-tested.</p>
+<p>Wishing you a great week—keep learning, keep engineering, and stay curious.stay curious.</p>
 
           
           
@@ -978,70 +1226,13 @@ Subscribe on YouTube
           type="text/javascript"
           src="/js/page.min.54b6f4371722649edbe871e431d8670d670878c22be8f36e229fe53cc9b786fe25a834def5e6de621f7a3e37b72bc8cd73839aa5ed907ed6cbd45cd3e1b0fa20.js"
           integrity="sha512-VLb0NxciZJ7b6HHkMdhnDWcIeMIr6PNuIp/lPMm3hv4lqDTe9ebeYh96Pje3K8jNc4Oape2QftbL1FzT4bD6IA=="
-          data-oid="views_videos/Networking-Basics-Switching/index.md"
-          data-oid-likes="likes_videos/Networking-Basics-Switching/index.md"></script>
+          data-oid="views_blog/VRF-Lite-Routing/index.md"
+          data-oid-likes="likes_blog/VRF-Lite-Routing/index.md"></script>
       
 
     </section>
     <footer class="pt-8 max-w-prose print:hidden">
       
-  
-    
-    
-    
-    <div class="pt-8">
-      <hr class="border-dotted border-neutral-300 dark:border-neutral-600">
-      <div class="flex justify-between pt-3">
-        <span>
-          
-            <a class="flex group mr-3" href="/videos/building-the-wireshark-lab/">
-              <span
-                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
-                >&larr;</span
-              >
-              <span
-                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
-                >&rarr;</span
-              >
-              <span class="flex flex-col">
-                <span class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >Building the Wireshark Lab</span
-                >
-                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
-                  
-                    <time datetime="2025-07-13T00:40:04-07:00">13 July 2025</time>
-                  
-                </span>
-              </span>
-            </a>
-          
-        </span>
-        <span>
-          
-            <a class="flex text-right group ml-3" href="/videos/cisco-vtp-v3/">
-              <span class="flex flex-col">
-                <span class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-                  >Cisco VTP Version 3 The VLAN Sync King</span
-                >
-                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
-                  
-                    <time datetime="2025-07-17T00:40:04-07:00">17 July 2025</time>
-                  
-                </span>
-              </span>
-              <span
-                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
-                >&rarr;</span
-              >
-              <span
-                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
-                >&larr;</span
-              >
-            </a>
-          
-        </span>
-      </div>
-    </div>
   
 
 
