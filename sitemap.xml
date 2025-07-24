@@ -4,7 +4,19 @@
 
   <url>
     <loc>https://null0labs.com/</loc>
-    <lastmod>2025-07-18T00:40:04-07:00</lastmod>
+    <lastmod>2025-07-22T00:40:04-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://null0labs.com/blog/</loc>
+    <lastmod>2025-07-22T00:40:04-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://null0labs.com/blog/cidr-cheetsheets/</loc>
+    <lastmod>2025-07-22T00:40:04-07:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
@@ -33,12 +45,6 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://null0labs.com/blog/</loc>
-    <lastmod>2025-07-13T00:40:04-07:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
     <loc>https://null0labs.com/videos/building-the-wireshark-lab/</loc>
     <lastmod>2025-07-13T00:40:04-07:00</lastmod>
     <changefreq>daily</changefreq>
@@ -59,6 +65,18 @@
   <url>
     <loc>https://null0labs.com/videos/dual-homed-internet-p1/</loc>
     <lastmod>2025-07-11T00:40:04-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://null0labs.com/blog/xconnect-over-l2tpv3-ipsec/</loc>
+    <lastmod>2025-07-07T00:40:04-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://null0labs.com/blog/cityfibre/</loc>
+    <lastmod>2025-07-06T00:40:04-07:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>

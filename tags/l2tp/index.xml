@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>L2TP on Null0 Labs</title>
+    <link>https://null0labs.com/tags/l2tp/</link>
+    <description>Recent content in L2TP on Null0 Labs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>yt@null0labs.com (NULL0 LABS)</managingEditor>
+    <webMaster>yt@null0labs.com (NULL0 LABS)</webMaster>
+    <copyright>© 2025 NULL0 LABS</copyright>
+    <lastBuildDate>Mon, 07 Jul 2025 00:40:04 -0700</lastBuildDate><atom:link href="https://null0labs.com/tags/l2tp/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>XConnect over L2TPv3 &#43; IPSec</title>
+      <link>https://null0labs.com/blog/xconnect-over-l2tpv3-ipsec/</link>
+      <pubDate>Mon, 07 Jul 2025 00:40:04 -0700</pubDate>
+      <author>yt@null0labs.com (NULL0 LABS)</author>
+      <guid>https://null0labs.com/blog/xconnect-over-l2tpv3-ipsec/</guid>
+      <description></description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://null0labs.com/blog/xconnect-over-l2tpv3-ipsec/feature.jpeg" />
+    </item>
+    
+  </channel>
+</rss>

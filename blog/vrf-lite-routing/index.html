@@ -14,8 +14,8 @@
   <meta name="theme-color">
 
   
-  <title>Routing with VRF-Lite: A Lab Showcase &middot; Null0 Labs</title>
-    <meta name="title" content="Routing with VRF-Lite: A Lab Showcase &middot; Null0 Labs">
+  <title>Routing with VRF-Lite &middot; Null0 Labs</title>
+    <meta name="title" content="Routing with VRF-Lite &middot; Null0 Labs">
 
   
   <meta name="description" content="Engineering networks. One loopback at a time.">
@@ -96,7 +96,7 @@
   
   <meta property="og:url" content="https://null0labs.com/blog/vrf-lite-routing/">
   <meta property="og:site_name" content="Null0 Labs">
-  <meta property="og:title" content="Routing with VRF-Lite: A Lab Showcase">
+  <meta property="og:title" content="Routing with VRF-Lite">
   <meta property="og:description" content="Engineering networks. One loopback at a time.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
@@ -106,19 +106,22 @@
     <meta property="article:tag" content="Vrf-Lite">
     <meta property="article:tag" content="Routing">
     <meta property="article:tag" content="Blog">
+    <meta property="og:image" content="https://null0labs.com/blog/vrf-lite-routing/feature.jpeg">
 
   
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Routing with VRF-Lite: A Lab Showcase">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://null0labs.com/blog/vrf-lite-routing/feature.jpeg">
+  <meta name="twitter:title" content="Routing with VRF-Lite">
   <meta name="twitter:description" content="Engineering networks. One loopback at a time.">
-
+<meta name="twitter:image" content="https://null0labs.com/blog/vrf-lite-routing/feature.jpeg">
+    <meta property="og:image" content="https://null0labs.com/blog/vrf-lite-routing/feature.jpeg">
   <script type="application/ld+json">
   [{
     "@context": "https://schema.org",
     "@type": "Article",
     "articleSection": "Blog",
-    "name": "Routing with VRF-Lite: A Lab Showcase",
-    "headline": "Routing with VRF-Lite: A Lab Showcase",
+    "name": "Routing with VRF-Lite",
+    "headline": "Routing with VRF-Lite",
     
     
     "inLanguage": "en",
@@ -136,7 +139,7 @@
     "keywords": ["vrf-lite","routing","blog"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "693"
+    "wordCount": "696"
   }]
   </script>
 
@@ -566,7 +569,7 @@
   
   <li class="hidden">
     <a class="hover:underline decoration-neutral-300 dark:underline-neutral-600" href="/blog/vrf-lite-routing/"
-      >Routing with VRF-Lite: A Lab Showcase</a
+      >Routing with VRF-Lite</a
     ><span class="px-1 text-primary-500">/</span>
   </li>
 
@@ -575,7 +578,7 @@
 
       
       <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
-        Routing with VRF-Lite: A Lab Showcase
+        Routing with VRF-Lite
       </h1>
       <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
         
@@ -743,7 +746,11 @@
     <li><a href="#subinterfaces-with-encapsulation--routing">Subinterfaces with Encapsulation &amp; Routing</a></li>
     <li><a href="#vrf-scoped-ospf">VRF-Scoped OSPF</a></li>
     <li><a href="#real-world-implications">Real-World Implications</a></li>
-    <li><a href="#validation-and-output">Validation and Output</a></li>
+    <li><a href="#validation-and-output">Validation and Output</a>
+      <ul>
+        <li><a href="#wireshark-snapshot-ping-from-custa_1-loopback-to-custa_2g-from-custa_1-loopback-to-custa_2">Wireshark Snapshot: Ping from CustA_1 Loopback to CustA_2g from CustA_1 Loopback to CustA_2</a></li>
+      </ul>
+    </li>
     <li><a href="#final-thoughts">Final Thoughts</a></li>
   </ul>
 </nav>
@@ -771,7 +778,11 @@
     <li><a href="#subinterfaces-with-encapsulation--routing">Subinterfaces with Encapsulation &amp; Routing</a></li>
     <li><a href="#vrf-scoped-ospf">VRF-Scoped OSPF</a></li>
     <li><a href="#real-world-implications">Real-World Implications</a></li>
-    <li><a href="#validation-and-output">Validation and Output</a></li>
+    <li><a href="#validation-and-output">Validation and Output</a>
+      <ul>
+        <li><a href="#wireshark-snapshot-ping-from-custa_1-loopback-to-custa_2g-from-custa_1-loopback-to-custa_2">Wireshark Snapshot: Ping from CustA_1 Loopback to CustA_2g from CustA_1 Loopback to CustA_2</a></li>
+      </ul>
+    </li>
     <li><a href="#final-thoughts">Final Thoughts</a></li>
   </ul>
 </nav>
@@ -794,7 +805,27 @@
 
         <div class="article-content max-w-prose mb-20">
           <p>In a world where multi-tenancy is standard and overlapping IP addressing is a common reality, Virtual Routing and Forwarding Lite (VRF-Lite) emerges as a clean and powerful solution. Whether you&rsquo;re an enterprise splitting departments or a service provider managing distinct customers, VRF-Lite can streamline your architecture—without extra hardware overhead.</p>
+
+<h1 class="relative group"> 
+    <div id="" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#" aria-label="Anchor">#</a>
+    </span>        
+    
+</h1>
 <p>Today, I’m showcasing a lab I designed that demonstrates how VRF-Lite achieves traffic isolation and address overlap in a Tiered ISP environment. This topology simulates two different customers using the same IP space, and yet, thanks to VRF-Lite, they remain entirely segregated.</p>
+
+<h1 class="relative group"> 
+    <div id="" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#" aria-label="Anchor">#</a>
+    </span>        
+    
+</h1>
 
 <h2 class="relative group">What is VRF-Lite? 
     <div id="what-is-vrf-lite" class="anchor"></div>
@@ -855,8 +886,8 @@
 
   
 </figure>
-
-Lab Overview 2 customers with over lapping IP ranges</p>
+</p>
+<center>  Lab Overview 2 customers with over lapping IP ranges.  </center>
 <p>The diagram illustrates a provider edge (P1) router connected to two customer sites: CustA_1 and CustB_1, both using identical addressing schemes but operating in complete isolation via VRFs.</p>
 
 <h2 class="relative group">Color Code: 
@@ -882,10 +913,12 @@ Lab Overview 2 customers with over lapping IP ranges</p>
     </span>        
     
 </h2>
-<p>Gig0/0.1 (dot1Q 100) → VRF CUST-A
-Gig0/0.2 (dot1Q 200) → VRF CUST-B
-Gig0/1 → Link to CustA_1
-Gig0/2 → Link to CustB_1</p>
+<ul>
+<li>Gig0/0.1 (dot1Q 100) → VRF CUST-A</li>
+<li>Gig0/0.2 (dot1Q 200) → VRF CUST-B</li>
+<li>Gig0/1 → Link to CustA_1</li>
+<li>Gig0/2 → Link to CustB_1</li>
+</ul>
 <p>Both customers have routers using the same loopback subnet 192.168.10.0/24, showcasing that overlapping IPs are fully viable with VRF-Lite.</p>
 
 <h2 class="relative group">Under the Hood: Key Configuration Highlights 
@@ -907,9 +940,9 @@ Gig0/2 → Link to CustB_1</p>
     </span>        
     
 </h3>
-<p>ip vrf CUST-A
-ip vrf CUST-B</p>
-
+<pre tabindex="0"><code>ip vrf CUST-A
+ip vrf CUST-B
+</code></pre>
 <h2 class="relative group">Subinterfaces with Encapsulation &amp; Routing 
     <div id="subinterfaces-with-encapsulation--routing" class="anchor"></div>
     
@@ -963,8 +996,17 @@ router ospf 2 vrf CUST-B
     </span>        
     
 </h2>
-<p>Wireshark Snapshot: Ping from CustA_1 Loopback to CustA_2g from CustA_1 Loopback to CustA_2
 
+<h3 class="relative group">Wireshark Snapshot: Ping from CustA_1 Loopback to CustA_2g from CustA_1 Loopback to CustA_2 
+    <div id="wireshark-snapshot-ping-from-custa_1-loopback-to-custa_2g-from-custa_1-loopback-to-custa_2" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#wireshark-snapshot-ping-from-custa_1-loopback-to-custa_2g-from-custa_1-loopback-to-custa_2" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>
 
 
 
@@ -990,14 +1032,14 @@ router ospf 2 vrf CUST-B
 </figure>
 </p>
 <p>You see the traffic is isolated within VLAN 100 on the link between P1 and P2</p>
-<pre tabindex="0"><code>Ping Output (CustA_1 → CustA_2)
-CustA_1#ping 192.168.11.1 repeat 5
+<p>Ping Output (CustA_1 → CustA_2)</p>
+<pre tabindex="0"><code>CustA_1#ping 192.168.11.1 repeat 5
 Type escape sequence to abort.
 Sending 5, 100-byte ICMP Echos to 192.168.11.1, timeout is 2 seconds:
 !!!!!
 Success rate is 100 percent (5/5), round-trip min/avg/max = 2/2/2 ms
-</code></pre><pre tabindex="0"><code>Traceroute Snapshot (CustA_1 → CustA_2)
-CustA_1#traceroute 192.168.11.1
+</code></pre><p>Traceroute Snapshot (CustA_1 → CustA_2)</p>
+<pre tabindex="0"><code>CustA_1#traceroute 192.168.11.1
 Type escape sequence to abort.
 Tracing the route to 192.168.11.1
 VRF info: (vrf in name/id, vrf out name/id)
@@ -1008,20 +1050,17 @@ VRF info: (vrf in name/id, vrf out name/id)
 <p>Default Routing Table (Global)</p>
 <pre tabindex="0"><code>P1#show ip route
 Empty
-</code></pre><pre tabindex="0"><code>VRF-Specific Routing Table: CUST-A
-P1#show ip route vrf CUST-A
-
-Routing Table: CUST-A
-&lt;...routing codes...&gt;
+</code></pre><p>VRF-Specific Routing Table: CUST-A</p>
+<pre tabindex="0"><code>P1#show ip route vrf CUST-A
+</code></pre><p>Routing Table: CUST-A</p>
+<pre tabindex="0"><code>&lt;...routing codes...&gt;
 10.1.1.0/30       → Connected via Gi0/0.1
 192.168.10.1/32   → Learned via OSPF from CustA_1
 192.168.11.1/32   → Learned from remote CustA site
-
-VRF-Specific Routing Table: CUST-B
-P1#show ip route vrf CUST-B
-
-Routing Table: CUST-B
-&lt;...routing codes...&gt;
+</code></pre><p>VRF-Specific Routing Table: CUST-B</p>
+<pre tabindex="0"><code>P1#show ip route vrf CUST-B
+</code></pre><p>Routing Table: CUST-B</p>
+<pre tabindex="0"><code>&lt;...routing codes...&gt;
 10.1.1.0/30       → Connected via Gi0/0.2
 192.168.10.1/32   → Learned via OSPF from CustB_1
 192.168.11.1/32   → Learned from remote CustB site
@@ -1233,6 +1272,63 @@ Routing Table: CUST-B
     </section>
     <footer class="pt-8 max-w-prose print:hidden">
       
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600">
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="flex group mr-3" href="/blog/xconnect-over-l2tpv3-ipsec/">
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span class="flex flex-col">
+                <span class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >XConnect over L2TPv3 + IPSec</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2025-07-07T00:40:04-07:00">7 July 2025</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="flex text-right group ml-3" href="/blog/cidr-cheetsheets/">
+              <span class="flex flex-col">
+                <span class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >CIDR Cheatsheets</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2025-07-22T00:40:04-07:00">22 July 2025</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
   
 
 
