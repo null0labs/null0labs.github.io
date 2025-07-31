@@ -4,13 +4,37 @@
 
   <url>
     <loc>https://null0labs.com/</loc>
-    <lastmod>2025-07-22T00:40:04-07:00</lastmod>
+    <lastmod>2025-07-31T00:40:04-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://null0labs.com/videos/building-cisco-spine-leaf/</loc>
+    <lastmod>2025-07-31T00:40:04-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://null0labs.com/videos/</loc>
+    <lastmod>2025-07-31T00:40:04-07:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://null0labs.com/blog/</loc>
-    <lastmod>2025-07-22T00:40:04-07:00</lastmod>
+    <lastmod>2025-07-27T00:40:04-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://null0labs.com/blog/vxlan-evpn-leaf-and-spine/</loc>
+    <lastmod>2025-07-27T00:40:04-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://null0labs.com/videos/securing-cisco-devices-with-radius/</loc>
+    <lastmod>2025-07-24T00:40:04-07:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
@@ -22,12 +46,6 @@
   </url>
   <url>
     <loc>https://null0labs.com/videos/router-on-a-stick/</loc>
-    <lastmod>2025-07-18T00:40:04-07:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://null0labs.com/videos/</loc>
     <lastmod>2025-07-18T00:40:04-07:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>

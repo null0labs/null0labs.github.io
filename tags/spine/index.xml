@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Spine on Null0 Labs</title>
+    <link>https://null0labs.com/tags/spine/</link>
+    <description>Recent content in Spine on Null0 Labs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>yt@null0labs.com (NULL0 LABS)</managingEditor>
+    <webMaster>yt@null0labs.com (NULL0 LABS)</webMaster>
+    <copyright>© 2025 NULL0 LABS</copyright>
+    <lastBuildDate>Thu, 31 Jul 2025 00:40:04 -0700</lastBuildDate><atom:link href="https://null0labs.com/tags/spine/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Building a Cisco spine and leaf network</title>
+      <link>https://null0labs.com/videos/building-cisco-spine-leaf/</link>
+      <pubDate>Thu, 31 Jul 2025 00:40:04 -0700</pubDate>
+      <author>yt@null0labs.com (NULL0 LABS)</author>
+      <guid>https://null0labs.com/videos/building-cisco-spine-leaf/</guid>
+      <description></description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://null0labs.com/videos/building-cisco-spine-leaf/feature.jpg" />
+    </item>
+    
+  </channel>
+</rss>
