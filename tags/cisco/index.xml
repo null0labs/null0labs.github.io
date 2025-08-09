@@ -9,7 +9,17 @@
     <managingEditor>yt@null0labs.com (NULL0 LABS)</managingEditor>
     <webMaster>yt@null0labs.com (NULL0 LABS)</webMaster>
     <copyright>© 2025 NULL0 LABS</copyright>
-    <lastBuildDate>Thu, 31 Jul 2025 00:40:04 -0700</lastBuildDate><atom:link href="https://null0labs.com/tags/cisco/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 06 Aug 2025 00:40:04 -0700</lastBuildDate><atom:link href="https://null0labs.com/tags/cisco/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Cisco vPC Configuration Demystified</title>
+      <link>https://null0labs.com/videos/cisco-vpc-demystified/</link>
+      <pubDate>Wed, 06 Aug 2025 00:40:04 -0700</pubDate>
+      <author>yt@null0labs.com (NULL0 LABS)</author>
+      <guid>https://null0labs.com/videos/cisco-vpc-demystified/</guid>
+      <description></description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://null0labs.com/videos/cisco-vpc-demystified/feature.jpg" />
+    </item>
     
     <item>
       <title>Building a Cisco spine and leaf network</title>

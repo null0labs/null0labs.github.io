@@ -4,18 +4,24 @@
 
   <url>
     <loc>https://null0labs.com/</loc>
-    <lastmod>2025-07-31T00:40:04-07:00</lastmod>
+    <lastmod>2025-08-06T00:40:04-07:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://null0labs.com/videos/building-cisco-spine-leaf/</loc>
-    <lastmod>2025-07-31T00:40:04-07:00</lastmod>
+    <loc>https://null0labs.com/videos/cisco-vpc-demystified/</loc>
+    <lastmod>2025-08-06T00:40:04-07:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://null0labs.com/videos/</loc>
+    <lastmod>2025-08-06T00:40:04-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://null0labs.com/videos/building-cisco-spine-leaf/</loc>
     <lastmod>2025-07-31T00:40:04-07:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
