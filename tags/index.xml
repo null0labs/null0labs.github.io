@@ -2,251 +2,251 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Null0 Labs</title>
-    <link>https://null0labs.com/tags/</link>
+    <link>http://localhost:1313/tags/</link>
     <description>Recent content in Tags on Null0 Labs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <managingEditor>yt@null0labs.com (NULL0 LABS)</managingEditor>
     <webMaster>yt@null0labs.com (NULL0 LABS)</webMaster>
     <copyright>© 2026 NULL0 LABS</copyright>
-    <lastBuildDate>Wed, 06 Aug 2025 00:40:04 -0700</lastBuildDate><atom:link href="https://null0labs.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 06 Aug 2025 00:40:04 -0700</lastBuildDate><atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Cisco</title>
-      <link>https://null0labs.com/tags/cisco/</link>
+      <link>http://localhost:1313/tags/cisco/</link>
       <pubDate>Wed, 06 Aug 2025 00:40:04 -0700</pubDate>
       <author>yt@null0labs.com (NULL0 LABS)</author>
-      <guid>https://null0labs.com/tags/cisco/</guid>
+      <guid>http://localhost:1313/tags/cisco/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>Lacp</title>
-      <link>https://null0labs.com/tags/lacp/</link>
+      <link>http://localhost:1313/tags/lacp/</link>
       <pubDate>Wed, 06 Aug 2025 00:40:04 -0700</pubDate>
       <author>yt@null0labs.com (NULL0 LABS)</author>
-      <guid>https://null0labs.com/tags/lacp/</guid>
+      <guid>http://localhost:1313/tags/lacp/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>Vds</title>
-      <link>https://null0labs.com/tags/vds/</link>
+      <link>http://localhost:1313/tags/vds/</link>
       <pubDate>Wed, 06 Aug 2025 00:40:04 -0700</pubDate>
       <author>yt@null0labs.com (NULL0 LABS)</author>
-      <guid>https://null0labs.com/tags/vds/</guid>
+      <guid>http://localhost:1313/tags/vds/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>Vpc</title>
-      <link>https://null0labs.com/tags/vpc/</link>
+      <link>http://localhost:1313/tags/vpc/</link>
       <pubDate>Wed, 06 Aug 2025 00:40:04 -0700</pubDate>
       <author>yt@null0labs.com (NULL0 LABS)</author>
-      <guid>https://null0labs.com/tags/vpc/</guid>
+      <guid>http://localhost:1313/tags/vpc/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>Leaf</title>
-      <link>https://null0labs.com/tags/leaf/</link>
+      <link>http://localhost:1313/tags/leaf/</link>
       <pubDate>Thu, 31 Jul 2025 00:40:04 -0700</pubDate>
       <author>yt@null0labs.com (NULL0 LABS)</author>
-      <guid>https://null0labs.com/tags/leaf/</guid>
+      <guid>http://localhost:1313/tags/leaf/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>Spine</title>
-      <link>https://null0labs.com/tags/spine/</link>
+      <link>http://localhost:1313/tags/spine/</link>
       <pubDate>Thu, 31 Jul 2025 00:40:04 -0700</pubDate>
       <author>yt@null0labs.com (NULL0 LABS)</author>
-      <guid>https://null0labs.com/tags/spine/</guid>
+      <guid>http://localhost:1313/tags/spine/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>Vxlan</title>
-      <link>https://null0labs.com/tags/vxlan/</link>
+      <link>http://localhost:1313/tags/vxlan/</link>
       <pubDate>Thu, 31 Jul 2025 00:40:04 -0700</pubDate>
       <author>yt@null0labs.com (NULL0 LABS)</author>
-      <guid>https://null0labs.com/tags/vxlan/</guid>
+      <guid>http://localhost:1313/tags/vxlan/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>Blog</title>
-      <link>https://null0labs.com/tags/blog/</link>
+      <link>http://localhost:1313/tags/blog/</link>
       <pubDate>Sun, 27 Jul 2025 00:40:04 -0700</pubDate>
       <author>yt@null0labs.com (NULL0 LABS)</author>
-      <guid>https://null0labs.com/tags/blog/</guid>
+      <guid>http://localhost:1313/tags/blog/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>Routing</title>
-      <link>https://null0labs.com/tags/routing/</link>
+      <link>http://localhost:1313/tags/routing/</link>
       <pubDate>Sun, 27 Jul 2025 00:40:04 -0700</pubDate>
       <author>yt@null0labs.com (NULL0 LABS)</author>
-      <guid>https://null0labs.com/tags/routing/</guid>
+      <guid>http://localhost:1313/tags/routing/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>Vrf-Lite</title>
-      <link>https://null0labs.com/tags/vrf-lite/</link>
+      <link>http://localhost:1313/tags/vrf-lite/</link>
       <pubDate>Sun, 27 Jul 2025 00:40:04 -0700</pubDate>
       <author>yt@null0labs.com (NULL0 LABS)</author>
-      <guid>https://null0labs.com/tags/vrf-lite/</guid>
+      <guid>http://localhost:1313/tags/vrf-lite/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>Bob</title>
-      <link>https://null0labs.com/tags/bob/</link>
+      <link>http://localhost:1313/tags/bob/</link>
       <pubDate>Thu, 24 Jul 2025 00:40:04 -0700</pubDate>
       <author>yt@null0labs.com (NULL0 LABS)</author>
-      <guid>https://null0labs.com/tags/bob/</guid>
+      <guid>http://localhost:1313/tags/bob/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>Radius</title>
-      <link>https://null0labs.com/tags/radius/</link>
+      <link>http://localhost:1313/tags/radius/</link>
       <pubDate>Thu, 24 Jul 2025 00:40:04 -0700</pubDate>
       <author>yt@null0labs.com (NULL0 LABS)</author>
-      <guid>https://null0labs.com/tags/radius/</guid>
+      <guid>http://localhost:1313/tags/radius/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>Cidr</title>
-      <link>https://null0labs.com/tags/cidr/</link>
+      <link>http://localhost:1313/tags/cidr/</link>
       <pubDate>Tue, 22 Jul 2025 00:40:04 -0700</pubDate>
       <author>yt@null0labs.com (NULL0 LABS)</author>
-      <guid>https://null0labs.com/tags/cidr/</guid>
+      <guid>http://localhost:1313/tags/cidr/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>Ipaddresses</title>
-      <link>https://null0labs.com/tags/ipaddresses/</link>
+      <link>http://localhost:1313/tags/ipaddresses/</link>
       <pubDate>Tue, 22 Jul 2025 00:40:04 -0700</pubDate>
       <author>yt@null0labs.com (NULL0 LABS)</author>
-      <guid>https://null0labs.com/tags/ipaddresses/</guid>
+      <guid>http://localhost:1313/tags/ipaddresses/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>Vlan</title>
-      <link>https://null0labs.com/tags/vlan/</link>
+      <link>http://localhost:1313/tags/vlan/</link>
       <pubDate>Fri, 18 Jul 2025 00:40:04 -0700</pubDate>
       <author>yt@null0labs.com (NULL0 LABS)</author>
-      <guid>https://null0labs.com/tags/vlan/</guid>
+      <guid>http://localhost:1313/tags/vlan/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>Vtp</title>
-      <link>https://null0labs.com/tags/vtp/</link>
+      <link>http://localhost:1313/tags/vtp/</link>
       <pubDate>Thu, 17 Jul 2025 00:40:04 -0700</pubDate>
       <author>yt@null0labs.com (NULL0 LABS)</author>
-      <guid>https://null0labs.com/tags/vtp/</guid>
+      <guid>http://localhost:1313/tags/vtp/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>Switching</title>
-      <link>https://null0labs.com/tags/switching/</link>
+      <link>http://localhost:1313/tags/switching/</link>
       <pubDate>Wed, 16 Jul 2025 00:40:04 -0700</pubDate>
       <author>yt@null0labs.com (NULL0 LABS)</author>
-      <guid>https://null0labs.com/tags/switching/</guid>
+      <guid>http://localhost:1313/tags/switching/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>Live</title>
-      <link>https://null0labs.com/tags/live/</link>
+      <link>http://localhost:1313/tags/live/</link>
       <pubDate>Sun, 13 Jul 2025 00:40:04 -0700</pubDate>
       <author>yt@null0labs.com (NULL0 LABS)</author>
-      <guid>https://null0labs.com/tags/live/</guid>
+      <guid>http://localhost:1313/tags/live/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>Security</title>
-      <link>https://null0labs.com/tags/security/</link>
+      <link>http://localhost:1313/tags/security/</link>
       <pubDate>Sun, 13 Jul 2025 00:40:04 -0700</pubDate>
       <author>yt@null0labs.com (NULL0 LABS)</author>
-      <guid>https://null0labs.com/tags/security/</guid>
+      <guid>http://localhost:1313/tags/security/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>Wireshark</title>
-      <link>https://null0labs.com/tags/wireshark/</link>
+      <link>http://localhost:1313/tags/wireshark/</link>
       <pubDate>Sun, 13 Jul 2025 00:40:04 -0700</pubDate>
       <author>yt@null0labs.com (NULL0 LABS)</author>
-      <guid>https://null0labs.com/tags/wireshark/</guid>
+      <guid>http://localhost:1313/tags/wireshark/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>L2TP</title>
-      <link>https://null0labs.com/tags/l2tp/</link>
+      <link>http://localhost:1313/tags/l2tp/</link>
       <pubDate>Mon, 07 Jul 2025 00:40:04 -0700</pubDate>
       <author>yt@null0labs.com (NULL0 LABS)</author>
-      <guid>https://null0labs.com/tags/l2tp/</guid>
+      <guid>http://localhost:1313/tags/l2tp/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>Xconnect</title>
-      <link>https://null0labs.com/tags/xconnect/</link>
+      <link>http://localhost:1313/tags/xconnect/</link>
       <pubDate>Mon, 07 Jul 2025 00:40:04 -0700</pubDate>
       <author>yt@null0labs.com (NULL0 LABS)</author>
-      <guid>https://null0labs.com/tags/xconnect/</guid>
+      <guid>http://localhost:1313/tags/xconnect/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>Broadband</title>
-      <link>https://null0labs.com/tags/broadband/</link>
+      <link>http://localhost:1313/tags/broadband/</link>
       <pubDate>Sun, 06 Jul 2025 00:40:04 -0700</pubDate>
       <author>yt@null0labs.com (NULL0 LABS)</author>
-      <guid>https://null0labs.com/tags/broadband/</guid>
+      <guid>http://localhost:1313/tags/broadband/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title>Cityfibre</title>
-      <link>https://null0labs.com/tags/cityfibre/</link>
+      <link>http://localhost:1313/tags/cityfibre/</link>
       <pubDate>Sun, 06 Jul 2025 00:40:04 -0700</pubDate>
       <author>yt@null0labs.com (NULL0 LABS)</author>
-      <guid>https://null0labs.com/tags/cityfibre/</guid>
+      <guid>http://localhost:1313/tags/cityfibre/</guid>
       <description></description>
       
     </item>

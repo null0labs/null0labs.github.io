@@ -2,161 +2,161 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Null0 Labs</title>
-    <link>https://null0labs.com/</link>
+    <link>http://localhost:1313/</link>
     <description>Recent content on Null0 Labs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <managingEditor>yt@null0labs.com (NULL0 LABS)</managingEditor>
     <webMaster>yt@null0labs.com (NULL0 LABS)</webMaster>
     <copyright>© 2026 NULL0 LABS</copyright>
-    <lastBuildDate>Wed, 06 Aug 2025 00:40:04 -0700</lastBuildDate><atom:link href="https://null0labs.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 06 Aug 2025 00:40:04 -0700</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Cisco vPC Configuration Demystified</title>
-      <link>https://null0labs.com/videos/cisco-vpc-demystified/</link>
+      <link>http://localhost:1313/videos/cisco-vpc-demystified/</link>
       <pubDate>Wed, 06 Aug 2025 00:40:04 -0700</pubDate>
       <author>yt@null0labs.com (NULL0 LABS)</author>
-      <guid>https://null0labs.com/videos/cisco-vpc-demystified/</guid>
+      <guid>http://localhost:1313/videos/cisco-vpc-demystified/</guid>
       <description></description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://null0labs.com/videos/cisco-vpc-demystified/feature.jpg" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/videos/cisco-vpc-demystified/feature.jpg" />
     </item>
     
     <item>
       <title>Building a Cisco spine and leaf network</title>
-      <link>https://null0labs.com/videos/building-cisco-spine-leaf/</link>
+      <link>http://localhost:1313/videos/building-cisco-spine-leaf/</link>
       <pubDate>Thu, 31 Jul 2025 00:40:04 -0700</pubDate>
       <author>yt@null0labs.com (NULL0 LABS)</author>
-      <guid>https://null0labs.com/videos/building-cisco-spine-leaf/</guid>
+      <guid>http://localhost:1313/videos/building-cisco-spine-leaf/</guid>
       <description></description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://null0labs.com/videos/building-cisco-spine-leaf/feature.jpg" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/videos/building-cisco-spine-leaf/feature.jpg" />
     </item>
     
     <item>
       <title>VXLAN EVPN Spine and Leaf</title>
-      <link>https://null0labs.com/blog/vxlan-evpn-leaf-and-spine/</link>
+      <link>http://localhost:1313/blog/vxlan-evpn-leaf-and-spine/</link>
       <pubDate>Sun, 27 Jul 2025 00:40:04 -0700</pubDate>
       <author>yt@null0labs.com (NULL0 LABS)</author>
-      <guid>https://null0labs.com/blog/vxlan-evpn-leaf-and-spine/</guid>
+      <guid>http://localhost:1313/blog/vxlan-evpn-leaf-and-spine/</guid>
       <description></description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://null0labs.com/blog/vxlan-evpn-leaf-and-spine/feature.jpeg" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/blog/vxlan-evpn-leaf-and-spine/feature.jpeg" />
     </item>
     
     <item>
       <title>Securing Cisco Devices with RADIUS | Bye Bye BOB!</title>
-      <link>https://null0labs.com/videos/securing-cisco-devices-with-radius/</link>
+      <link>http://localhost:1313/videos/securing-cisco-devices-with-radius/</link>
       <pubDate>Thu, 24 Jul 2025 00:40:04 -0700</pubDate>
       <author>yt@null0labs.com (NULL0 LABS)</author>
-      <guid>https://null0labs.com/videos/securing-cisco-devices-with-radius/</guid>
+      <guid>http://localhost:1313/videos/securing-cisco-devices-with-radius/</guid>
       <description></description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://null0labs.com/videos/securing-cisco-devices-with-radius/feature.jpg" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/videos/securing-cisco-devices-with-radius/feature.jpg" />
     </item>
     
     <item>
       <title>CIDR Cheatsheets</title>
-      <link>https://null0labs.com/blog/cidr-cheetsheets/</link>
+      <link>http://localhost:1313/blog/cidr-cheetsheets/</link>
       <pubDate>Tue, 22 Jul 2025 00:40:04 -0700</pubDate>
       <author>yt@null0labs.com (NULL0 LABS)</author>
-      <guid>https://null0labs.com/blog/cidr-cheetsheets/</guid>
+      <guid>http://localhost:1313/blog/cidr-cheetsheets/</guid>
       <description></description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://null0labs.com/blog/cidr-cheetsheets/feature.jpg" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/blog/cidr-cheetsheets/feature.jpg" />
     </item>
     
     <item>
       <title>Router on a Stick – Inter-VLAN Routing Made Ridiculously Clear</title>
-      <link>https://null0labs.com/videos/router-on-a-stick/</link>
+      <link>http://localhost:1313/videos/router-on-a-stick/</link>
       <pubDate>Fri, 18 Jul 2025 00:40:04 -0700</pubDate>
       <author>yt@null0labs.com (NULL0 LABS)</author>
-      <guid>https://null0labs.com/videos/router-on-a-stick/</guid>
+      <guid>http://localhost:1313/videos/router-on-a-stick/</guid>
       <description></description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://null0labs.com/videos/router-on-a-stick/feature.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/videos/router-on-a-stick/feature.png" />
     </item>
     
     <item>
       <title>Cisco VTP Version 3 The VLAN Sync King</title>
-      <link>https://null0labs.com/videos/cisco-vtp-v3/</link>
+      <link>http://localhost:1313/videos/cisco-vtp-v3/</link>
       <pubDate>Thu, 17 Jul 2025 00:40:04 -0700</pubDate>
       <author>yt@null0labs.com (NULL0 LABS)</author>
-      <guid>https://null0labs.com/videos/cisco-vtp-v3/</guid>
+      <guid>http://localhost:1313/videos/cisco-vtp-v3/</guid>
       <description></description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://null0labs.com/videos/cisco-vtp-v3/feature.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/videos/cisco-vtp-v3/feature.png" />
     </item>
     
     <item>
       <title>Networking Basics: Switching</title>
-      <link>https://null0labs.com/videos/networking-basics-switching/</link>
+      <link>http://localhost:1313/videos/networking-basics-switching/</link>
       <pubDate>Wed, 16 Jul 2025 00:40:04 -0700</pubDate>
       <author>yt@null0labs.com (NULL0 LABS)</author>
-      <guid>https://null0labs.com/videos/networking-basics-switching/</guid>
+      <guid>http://localhost:1313/videos/networking-basics-switching/</guid>
       <description></description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://null0labs.com/videos/networking-basics-switching/featured.jpg" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/videos/networking-basics-switching/featured.jpg" />
     </item>
     
     <item>
       <title>Building the Wireshark Lab</title>
-      <link>https://null0labs.com/videos/building-the-wireshark-lab/</link>
+      <link>http://localhost:1313/videos/building-the-wireshark-lab/</link>
       <pubDate>Sun, 13 Jul 2025 00:40:04 -0700</pubDate>
       <author>yt@null0labs.com (NULL0 LABS)</author>
-      <guid>https://null0labs.com/videos/building-the-wireshark-lab/</guid>
+      <guid>http://localhost:1313/videos/building-the-wireshark-lab/</guid>
       <description></description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://null0labs.com/videos/building-the-wireshark-lab/feature.jpg" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/videos/building-the-wireshark-lab/feature.jpg" />
     </item>
     
     <item>
       <title>ISP-Level Redundancy: Building Dual-Homed Internet P2</title>
-      <link>https://null0labs.com/videos/dual-homed-internet-p2/</link>
+      <link>http://localhost:1313/videos/dual-homed-internet-p2/</link>
       <pubDate>Sun, 13 Jul 2025 00:40:04 -0700</pubDate>
       <author>yt@null0labs.com (NULL0 LABS)</author>
-      <guid>https://null0labs.com/videos/dual-homed-internet-p2/</guid>
+      <guid>http://localhost:1313/videos/dual-homed-internet-p2/</guid>
       <description></description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://null0labs.com/videos/dual-homed-internet-p2/feature.jpg" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/videos/dual-homed-internet-p2/feature.jpg" />
     </item>
     
     <item>
       <title>Routing with VRF-Lite</title>
-      <link>https://null0labs.com/blog/vrf-lite-routing/</link>
+      <link>http://localhost:1313/blog/vrf-lite-routing/</link>
       <pubDate>Sun, 13 Jul 2025 00:40:04 -0700</pubDate>
       <author>yt@null0labs.com (NULL0 LABS)</author>
-      <guid>https://null0labs.com/blog/vrf-lite-routing/</guid>
+      <guid>http://localhost:1313/blog/vrf-lite-routing/</guid>
       <description></description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://null0labs.com/blog/vrf-lite-routing/feature.jpeg" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/blog/vrf-lite-routing/feature.jpeg" />
     </item>
     
     <item>
       <title>ISP-Level Redundancy: Building Dual-Homed Internet P1</title>
-      <link>https://null0labs.com/videos/dual-homed-internet-p1/</link>
+      <link>http://localhost:1313/videos/dual-homed-internet-p1/</link>
       <pubDate>Fri, 11 Jul 2025 00:40:04 -0700</pubDate>
       <author>yt@null0labs.com (NULL0 LABS)</author>
-      <guid>https://null0labs.com/videos/dual-homed-internet-p1/</guid>
+      <guid>http://localhost:1313/videos/dual-homed-internet-p1/</guid>
       <description></description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://null0labs.com/videos/dual-homed-internet-p1/feature.jpg" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/videos/dual-homed-internet-p1/feature.jpg" />
     </item>
     
     <item>
       <title>XConnect over L2TPv3 &#43; IPSec</title>
-      <link>https://null0labs.com/blog/xconnect-over-l2tpv3-ipsec/</link>
+      <link>http://localhost:1313/blog/xconnect-over-l2tpv3-ipsec/</link>
       <pubDate>Mon, 07 Jul 2025 00:40:04 -0700</pubDate>
       <author>yt@null0labs.com (NULL0 LABS)</author>
-      <guid>https://null0labs.com/blog/xconnect-over-l2tpv3-ipsec/</guid>
+      <guid>http://localhost:1313/blog/xconnect-over-l2tpv3-ipsec/</guid>
       <description></description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://null0labs.com/blog/xconnect-over-l2tpv3-ipsec/feature.jpeg" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/blog/xconnect-over-l2tpv3-ipsec/feature.jpeg" />
     </item>
     
     <item>
       <title>Virgin Media to CityFibre: A Network Engineer’s Curiosity Unleashed</title>
-      <link>https://null0labs.com/blog/cityfibre/</link>
+      <link>http://localhost:1313/blog/cityfibre/</link>
       <pubDate>Sun, 06 Jul 2025 00:40:04 -0700</pubDate>
       <author>yt@null0labs.com (NULL0 LABS)</author>
-      <guid>https://null0labs.com/blog/cityfibre/</guid>
+      <guid>http://localhost:1313/blog/cityfibre/</guid>
       <description></description>
-      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://null0labs.com/blog/cityfibre/feature.png" />
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:1313/blog/cityfibre/feature.png" />
     </item>
     
     <item>
       <title>About Me</title>
-      <link>https://null0labs.com/about/</link>
+      <link>http://localhost:1313/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <author>yt@null0labs.com (NULL0 LABS)</author>
-      <guid>https://null0labs.com/about/</guid>
+      <guid>http://localhost:1313/about/</guid>
       <description></description>
       
     </item>

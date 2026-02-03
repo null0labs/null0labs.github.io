@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Null0 Labs</title>
-    <link>https://null0labs.com/categories/</link>
+    <link>http://localhost:1313/categories/</link>
     <description>Recent content in Categories on Null0 Labs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <managingEditor>yt@null0labs.com (NULL0 LABS)</managingEditor>
     <webMaster>yt@null0labs.com (NULL0 LABS)</webMaster>
     <copyright>© 2026 NULL0 LABS</copyright>
-    <lastBuildDate>Wed, 06 Aug 2025 00:40:04 -0700</lastBuildDate><atom:link href="https://null0labs.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 06 Aug 2025 00:40:04 -0700</lastBuildDate><atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Tutorial</title>
-      <link>https://null0labs.com/categories/tutorial/</link>
+      <link>http://localhost:1313/categories/tutorial/</link>
       <pubDate>Wed, 06 Aug 2025 00:40:04 -0700</pubDate>
       <author>yt@null0labs.com (NULL0 LABS)</author>
-      <guid>https://null0labs.com/categories/tutorial/</guid>
+      <guid>http://localhost:1313/categories/tutorial/</guid>
       <description></description>
       
     </item>
