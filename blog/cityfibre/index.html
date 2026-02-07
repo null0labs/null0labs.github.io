@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>
+  Virgin Media to CityFibre: A Network Engineer’s Curiosity Unleashed · Null0 Labs
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="Null0 Labs">
+<meta name="description" content="Recently, I made the switch from Virgin Media to City Fibre for my home broadband. As a long-standing network engineer, the moment I saw City Fibre offering a selection of multiple ISPs delivered over a single GPON connection, my curiosity was immediately piqued.
+Naturally, I couldn’t resist diving under the hood to figure out how it works.
+
+
+  The Premise
+  
+    
+    Link to heading
+  
+
+CityFibre acts as a wholesale network, offering a broadband access layer to multiple ISPs via PPPoE and IPoE. You—the end user—choose your ISP during signup, and your connection is magically handed off to them, without changing physical infrastructure.">
+<meta name="keywords" content="youtube,networks,cisco,retro,juniper,palo,hp,asa,ipsec,loopbacks,null0,null0labs">
+
+
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://null0labs.com/blog/cityfibre/feature.png">
+  <meta name="twitter:title" content="Virgin Media to CityFibre: A Network Engineer’s Curiosity Unleashed">
+  <meta name="twitter:description" content="Recently, I made the switch from Virgin Media to City Fibre for my home broadband. As a long-standing network engineer, the moment I saw City Fibre offering a selection of multiple ISPs delivered over a single GPON connection, my curiosity was immediately piqued.
+Naturally, I couldn’t resist diving under the hood to figure out how it works.
+The Premise Link to heading CityFibre acts as a wholesale network, offering a broadband access layer to multiple ISPs via PPPoE and IPoE. You—the end user—choose your ISP during signup, and your connection is magically handed off to them, without changing physical infrastructure.">
+
+<meta property="og:url" content="https://null0labs.com/blog/cityfibre/">
+  <meta property="og:site_name" content="Null0 Labs">
+  <meta property="og:title" content="Virgin Media to CityFibre: A Network Engineer’s Curiosity Unleashed">
+  <meta property="og:description" content="Recently, I made the switch from Virgin Media to City Fibre for my home broadband. As a long-standing network engineer, the moment I saw City Fibre offering a selection of multiple ISPs delivered over a single GPON connection, my curiosity was immediately piqued.
+Naturally, I couldn’t resist diving under the hood to figure out how it works.
+The Premise Link to heading CityFibre acts as a wholesale network, offering a broadband access layer to multiple ISPs via PPPoE and IPoE. You—the end user—choose your ISP during signup, and your connection is magically handed off to them, without changing physical infrastructure.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2025-07-06T00:40:04-07:00">
+    <meta property="article:modified_time" content="2025-07-06T00:40:04-07:00">
+    <meta property="article:tag" content="Cityfibre">
+    <meta property="article:tag" content="Broadband">
+    <meta property="article:tag" content="Blog">
+    <meta property="og:image" content="https://null0labs.com/blog/cityfibre/feature.png">
+
+
+
+
+<link rel="canonical" href="https://null0labs.com/blog/cityfibre/">
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.min.4b392a85107b91dbdabc528edf014a6ab1a30cd44cafcd5325c8efe796794fca.css" integrity="sha256-SzkqhRB7kdvavFKO3wFKarGjDNRMr81TJcjv55Z5T8o=" crossorigin="anonymous" media="screen" />
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css" integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin="anonymous" media="screen" />
+  
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/img/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-dark">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    <a class="navigation-title" href="https://null0labs.com/">
+      Null0 Labs
+    </a>
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/">Home</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/blog/">Blog</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/about/">About</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container page">
+  <article>
+    <header>
+      <h1 class="title">
+        <a class="title-link" href="https://null0labs.com/blog/cityfibre/">
+          Virgin Media to CityFibre: A Network Engineer’s Curiosity Unleashed
+        </a>
+      </h1>
+    </header>
+
+    <p>Recently, I made the switch from Virgin Media to City Fibre for my home broadband. As a long-standing network engineer, the moment I saw City Fibre offering a selection of multiple ISPs delivered over a single GPON connection, my curiosity was immediately piqued.</p>
+<p>Naturally, I couldn’t resist diving under the hood to figure out how it works.</p>
+<hr>
+<h2 id="the-premise">
+  The Premise
+  <a class="heading-link" href="#the-premise">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>CityFibre acts as a wholesale network, offering a broadband access layer to multiple ISPs via PPPoE and IPoE. You—the end user—choose your ISP during signup, and your connection is magically handed off to them, without changing physical infrastructure.</p>
+<p>But as engineers know nothing is ever magic. It’s just a very clever design.</p>
+<h2 id="my-mission-simulate-cityfibres-model">
+  My Mission: Simulate CityFibre’s Model
+  <a class="heading-link" href="#my-mission-simulate-cityfibres-model">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>So, I did what any self-respecting nerd would do: I recreated the architecture in a lab environment.</p>
+<p>I spun up a multi-ISP broadband network in EVE-NG with the following core components:</p>
+<p>Virtual Devices used Cisco C8000v Routers, Astria EOS Switches, Debian Linux with FreeRadius 3.0, Cisco IOL devices for PPPoE Clients.</p>
+<ul>
+<li>A CityFibre-style LAC handling PPPoE sessions.</li>
+<li>Multiple ISP LNS routers - (ZEN, VODA, GIGA).</li>
+<li>Per-ISP RADIUS servers for authentication.</li>
+<li>Full L2TP handoff between LAC and LNS, using dynamic AVP steering.</li>
+<li>A simulated OLT and multiple PPPoE clients, each mapped to a different ISP.</li>
+<li>A “Rest of Internet” node to simulate upstream connectivity with a test IP and allow the 3 test ISPs to reach each other.</li>
+</ul>
+<p><img src="1751794972654.png" alt="topology"></p>
+<!-- raw HTML omitted -->
+<h2 id="traffic-flows-end-to-end">
+  Traffic Flows: End-to-End
+  <a class="heading-link" href="#traffic-flows-end-to-end">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<ol>
+<li>PPPoE clients authenticate via the LAC to the City Radius Server.</li>
+<li>The RADIUS returns the L2TP tunnel attributes based on the user’s domain suffix.</li>
+<li>LAC builds an L2TP tunnel to the selected ISP’s LNS.</li>
+<li>The LNS performs its own RADIUS auth and assigns IPs, routes, etc.</li>
+<li>Traffic flows via the LNS out to the simulated “Internet.”</li>
+</ol>
+<p><img src="1751795130918.png" alt="ALT"></p>
+<!-- raw HTML omitted -->
+<p><img src="1751795130918.png" alt="ALT"></p>
+<!-- raw HTML omitted -->
+<p><img src="1751795351236.png" alt="ALT"></p>
+<!-- raw HTML omitted -->
+<h2 id="deep-dives-discoveries-along-the-way">
+  Deep Dives: Discoveries Along the Way
+  <a class="heading-link" href="#deep-dives-discoveries-along-the-way">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>After many hours trawling through Cisco documentation and lab debugging, I uncovered a few golden nuggets:</p>
+<p>The LAC makes a RADIUS Access-Request during the PPPoE phase.
+It expects the tunnel attributes (like the LNS address) to be returned from the RADIUS.
+By default, Cisco IOS uses a tunnel password of cisco unless explicitly configured. That one took longer than I’d like to admit! 🫣</p>
+<p>But I pushed to get this working as I could easily steer the users to the correct LNS using statically configured vpdn groups but the more I thought about it that would not scale well and having to update every router vpdn groups even with a template would be painful.</p>
+<p>The Radius Server debug displays the password ‘cisco’ even though it wasn&rsquo;t configured anywhere, as noted in the Cisco documentation found at 2am.</p>
+<pre tabindex="0"><code>Id 46 from 10.255.0.100:1645 to 192.1.1.2:1812 length 123
+(1)User-Name = &#34;zen.net&#34;  
+(1)User-Password = &#34;cisco&#34;  😡
+(1) NAS-Port-Type = Virtual (1) NAS-Port = 0 (1) NAS-Port-Id = &#34;0/0/4/911&#34;
+(1) Cisco-AVPair = &#34;client-mac-address=aabb.cc00.4000&#34; (1) Service-Type = Outbound-User (1) NAS-IP-Address = 10.255.0.100
+</code></pre><p><img src="screenshotcisco.png" alt="Ciscodocs"></p>
+<!-- raw HTML omitted -->
+<h2 id="verifying-the-build">
+  Verifying the Build
+  <a class="heading-link" href="#verifying-the-build">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Once everything was stitched together, I validated the setup by pinging between PPPoE clients and the simulated internet.</p>
+<p>I tested that all PPPoE clients can reach eachother and the test IP of 5.5.5.5 on the ROI node.</p>
+<pre tabindex="0"><code>ZenPPPoE#ping 5.5.5.5
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 5.5.5.5, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/2/4 ms
+ZenPPPoE#ping 10.103.1.200
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.103.1.200, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 6/7/8 ms
+</code></pre><ul>
+<li>ZenClient ↔ VodaClient</li>
+<li>VodaClient↔ GigaClient</li>
+<li>Each client ↔ test IP on “Rest-of-Internet” Node 5.5.5.5</li>
+</ul>
+<h2 id="why-this-matters">
+  Why This Matters
+  <a class="heading-link" href="#why-this-matters">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>City Fibre’s architecture is a brilliant real-world use of:</p>
+<p>Wholesale L2TP tunnelling
+Dynamic RADIUS AVP steering
+Scalable multi-ISP provisioning over GPON</p>
+<p>Understanding it from the inside out gave me a huge appreciation for the engineering behind the simplicity offered to end users.</p>
+<h2 id="example-of-the-configurations">
+  Example of the configurations
+  <a class="heading-link" href="#example-of-the-configurations">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>LAC configuration:</p>
+<pre tabindex="0"><code>Current configuration : 8984 bytes
+!
+! Last configuration change at 08:22:35 UTC Sun Jul 6 2025 by admin
+!
+version 17.16
+service timestamps debug datetime msec
+service timestamps log datetime msec
+platform qfp utilization monitor load 80
+platform sslvpn use-pd
+platform console serial
+!
+hostname CITY-LAC
+!
+boot-start-marker
+boot-end-marker
+!
+!
+aaa new-model
+!
+!
+aaa authentication login default local
+aaa authentication ppp default if-needed group radius
+aaa authorization exec default local
+aaa authorization commands 15 default local
+aaa authorization network default group radius
+aaa accounting network default start-stop group radius
+!
+!
+aaa session-id common
+!
+!
+!
+!
+!
+no ip domain lookup
+!
+!
+!
+login on-success log
+!
+!
+subscriber templating
+!
+!
+!
+!
+!
+!
+vpdn enable
+vpdn multihop
+vpdn aaa attribute nas-ip-address vpdn-nas
+vpdn tunnel authorization network default
+vpdn tunnel accounting network default
+vpdn session accounting network default
+vpdn search-order domain
+!
+vpdn-group default
+ request-dialin
+  protocol l2tp
+ source-ip 10.255.0.100
+!
+!
+!
+!
+!
+!
+!
+!
+!
+
+license boot level network-advantage addon dna-advantage
+memory free low-watermark processor 188978
+diagnostic bootup level minimal
+!
+!
+spanning-tree extend system-id
+!
+!
+!
+username admin privilege 15 secret 9 removed
+!
+redundancy
+!
+!
+!
+!
+!
+!
+!
+!
+bba-group pppoe GLOBAL_BBA_GROUP
+ virtual-template 1
+!
+!
+!
+interface Loopback0
+ description Local Loop
+ ip address 10.255.0.100 255.255.255.255
+!
+interface GigabitEthernet1
+ description UPLINK_TO_CORE_NETWORK
+ mtu 1508
+ no ip address
+ negotiation auto
+!
+interface GigabitEthernet1.100
+ description S-VLAN100 LNS ZEN
+ encapsulation dot1Q 100
+ ip address 192.0.2.1 255.255.255.252
+!
+interface GigabitEthernet1.200
+ description S-VLAN200 LNS VODAFONE
+ encapsulation dot1Q 200
+ ip address 192.0.2.5 255.255.255.252
+!
+interface GigabitEthernet1.300
+ description S-VLAN300 LNS GIGA
+ encapsulation dot1Q 300
+ ip address 192.0.2.9 255.255.255.252
+!
+interface GigabitEthernet2
+ no ip address
+ shutdown
+ negotiation auto
+!
+interface GigabitEthernet3
+ description CITY_RADIUS
+ ip address 192.1.1.1 255.255.255.0
+ negotiation auto
+!
+interface GigabitEthernet4
+ mtu 1508
+ no ip address
+ negotiation auto
+!
+interface GigabitEthernet4.911
+ encapsulation dot1Q 911
+ pppoe enable group GLOBAL_BBA_GROUP
+!
+interface Virtual-Template1
+ mtu 1492
+ no ip address
+ no peer default ip address
+ ppp mtu adaptive
+ ppp authentication chap
+!
+ip forward-protocol nd
+ip forward-protocol udp
+!
+no ip http server
+ip http authentication local
+no ip http secure-server
+ip route 10.255.0.1 255.255.255.255 GigabitEthernet1.100
+ip route 10.255.0.2 255.255.255.255 GigabitEthernet1.200
+ip route 10.255.0.3 255.255.255.255 GigabitEthernet1.300
+ip ssh bulk-mode 131072
+!
+ip radius source-interface Loopback0
+!
+!
+radius-server attribute nas-port format d
+!
+radius server rad01
+ address ipv4 192.1.1.2 auth-port 1812 acct-port 1813
+ key RADIUSsecret
+!
+!
+!
+control-plane
+!
+!
+mgcp behavior rsip-range tgcp-only
+mgcp behavior comedia-role none
+mgcp behavior comedia-check-media-src disable
+mgcp behavior comedia-sdp-force disable
+!
+mgcp profile default
+!
+!
+!
+!
+!
+line con 0
+ stopbits 1
+line aux 0
+line vty 0 4
+ transport input all
+!
+!
+!
+!
+!
+!
+!
+end
+</code></pre><p>LNS Configuration:</p>
+<pre tabindex="0"><code>Current configuration : 8277 bytes
+!
+! Last configuration change at 08:22:28 UTC Sun Jul 6 2025 by admin
+!
+version 17.16
+service timestamps debug datetime msec
+service timestamps log datetime msec
+platform qfp utilization monitor load 80
+platform sslvpn use-pd
+platform console serial
+!
+hostname ZEN-LNS
+!
+boot-start-marker
+boot-end-marker
+!
+!
+aaa new-model
+!
+!
+aaa authentication login default local
+aaa authentication ppp default group radius
+aaa authorization exec default local
+aaa authorization network default group radius local
+aaa accounting delay-start
+aaa accounting network default start-stop group radius
+!
+!
+aaa session-id common
+!
+!
+!
+!
+!
+!
+login on-success log
+!
+!
+subscriber templating
+!
+!
+!
+!
+!
+!
+vpdn enable
+vpdn multihop
+!
+vpdn-group PPPOE_VPDN
+ accept-dialin
+  protocol l2tp
+  virtual-template 1
+ terminate-from hostname CITY-LAC
+ local name ZEN-LNS
+ lcp renegotiation always
+ l2tp tunnel password 0 ZenPass
+!
+!
+!
+!
+!
+!
+!
+license udi pid C8000V sn 9GKY9515S9W
+license boot level network-advantage addon dna-advantage
+memory free low-watermark processor 188978
+diagnostic bootup level minimal
+!
+!
+spanning-tree extend system-id
+!
+!
+!
+username admin privilege 15 secret 9 removed
+!
+redundancy
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback0
+ description LNS Loopback
+ ip address 10.255.0.1 255.255.255.255
+!
+interface GigabitEthernet1
+ mtu 1508
+ no ip address
+ negotiation auto
+!
+interface GigabitEthernet1.100
+ description SVLAN-TAG LINK TO CITYLINK
+ encapsulation dot1Q 100
+ ip address 192.0.2.2 255.255.255.252
+!
+interface GigabitEthernet2
+ ip address 192.168.100.2 255.255.255.252
+ negotiation auto
+!
+interface GigabitEthernet3
+ description LINK_TO_RADIUS
+ ip address 192.168.4.1 255.255.255.0
+ negotiation auto
+!
+interface GigabitEthernet4
+ no ip address
+ shutdown
+ negotiation auto
+!
+interface Virtual-Template1
+ mtu 1492
+ ip unnumbered Loopback0
+ peer default ip address pool ZENPOOL
+ ppp authentication chap
+!
+ip local pool ZENPOOL 10.101.1.10 10.101.1.100
+ip forward-protocol nd
+ip forward-protocol udp
+!
+ip http server
+ip http authentication local
+ip http secure-server
+ip route 0.0.0.0 0.0.0.0 GigabitEthernet2
+ip route 0.0.0.0 0.0.0.0 192.168.100.1
+ip route 10.255.0.100 255.255.255.255 GigabitEthernet1.100
+ip ssh bulk-mode 131072
+!
+ip radius source-interface Loopback0
+!
+!
+!
+radius server radiusServer
+ address ipv4 192.168.4.2 auth-port 1812 acct-port 1813
+ key RADIUSsecret
+!
+!
+!
+control-plane
+!
+!
+mgcp behavior rsip-range tgcp-only
+mgcp behavior comedia-role none
+mgcp behavior comedia-check-media-src disable
+mgcp behavior comedia-sdp-force disable
+!
+mgcp profile default
+!
+!
+!
+!
+!
+!
+line con 0
+ stopbits 1
+line aux 0
+line vty 0 4
+ transport input ssh
+!
+!
+!
+!
+!
+!
+!
+end
+</code></pre><p>City Radius domain streering config:</p>
+<p><img src="radiusconfig.png" alt="RadiusConfig"></p>
+<!-- raw HTML omitted -->
+<h2 id="lessons-learned">
+  Lessons Learned
+  <a class="heading-link" href="#lessons-learned">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Even the most seamless consumer services are powered by beautiful complexity.
+It’s never just PPPoE and L2TP—especially when you’re steering at scale.
+Having the right tools and test harness (EVE-NG, Cisco IOSv, FreeRADIUS) is invaluable. (Might need to hit up David Mayberry at go-communications for some high quaility refurbished Cisco kit for a real lab test 😜)
+Keep pushing and testing you will find the bug
+Cisco docs and google will help you find answers</p>
+<p>Keen to hear from others building similar wholesale or carrier models. If you’re exploring PPPoE, LNS, or building your own BNG-like setup—drop a comment or message. I’d love to exchange notes! Especially the infamous &ldquo;User-Password = cisco&rdquo; mystery—this one’s a classic when dealing with LACs and RADIUS in a VPDN setup.</p>
+
+  </article>
+</section>
+
+  
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+      2025 -
+    
+    2026
+     Null0 Labs 
+    ·
+    
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>

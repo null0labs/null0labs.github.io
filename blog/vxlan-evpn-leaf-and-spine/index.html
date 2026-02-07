@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>
+  VXLAN EVPN Spine and Leaf · Null0 Labs
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="Null0 Labs">
+<meta name="description" content="
+  Introduction
+  
+    
+    Link to heading
+  
+
+The VXLAN EVPN Leaf and Spine architecture has become the backbone of scalable, multi-tenant network design. This blog post showcases a lab simulation built around this topology, highlighting configuration examples, verification tests, and insights into why this design is foundational for modern data centers.
+We&rsquo;ll explore:
+
+Why leaf and spine is ideal for multi-tenant overlays
+Configuration snippets from the lab topology
+Ping and trace outputs between tenant workloads
+Mnemonic VNI/VLAN/VRF schemes that reinforce automation and clarity
+
+
+">
+<meta name="keywords" content="youtube,networks,cisco,retro,juniper,palo,hp,asa,ipsec,loopbacks,null0,null0labs">
+
+
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://null0labs.com/blog/vxlan-evpn-leaf-and-spine/feature.jpeg">
+  <meta name="twitter:title" content="VXLAN EVPN Spine and Leaf">
+  <meta name="twitter:description" content="Introduction Link to heading The VXLAN EVPN Leaf and Spine architecture has become the backbone of scalable, multi-tenant network design. This blog post showcases a lab simulation built around this topology, highlighting configuration examples, verification tests, and insights into why this design is foundational for modern data centers.
+We’ll explore:
+Why leaf and spine is ideal for multi-tenant overlays Configuration snippets from the lab topology Ping and trace outputs between tenant workloads Mnemonic VNI/VLAN/VRF schemes that reinforce automation and clarity">
+
+<meta property="og:url" content="https://null0labs.com/blog/vxlan-evpn-leaf-and-spine/">
+  <meta property="og:site_name" content="Null0 Labs">
+  <meta property="og:title" content="VXLAN EVPN Spine and Leaf">
+  <meta property="og:description" content="Introduction Link to heading The VXLAN EVPN Leaf and Spine architecture has become the backbone of scalable, multi-tenant network design. This blog post showcases a lab simulation built around this topology, highlighting configuration examples, verification tests, and insights into why this design is foundational for modern data centers.
+We’ll explore:
+Why leaf and spine is ideal for multi-tenant overlays Configuration snippets from the lab topology Ping and trace outputs between tenant workloads Mnemonic VNI/VLAN/VRF schemes that reinforce automation and clarity">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2025-07-27T00:40:04-07:00">
+    <meta property="article:modified_time" content="2025-07-27T00:40:04-07:00">
+    <meta property="article:tag" content="Vrf-Lite">
+    <meta property="article:tag" content="Routing">
+    <meta property="article:tag" content="Blog">
+    <meta property="og:image" content="https://null0labs.com/blog/vxlan-evpn-leaf-and-spine/feature.jpeg">
+
+
+
+
+<link rel="canonical" href="https://null0labs.com/blog/vxlan-evpn-leaf-and-spine/">
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.min.4b392a85107b91dbdabc528edf014a6ab1a30cd44cafcd5325c8efe796794fca.css" integrity="sha256-SzkqhRB7kdvavFKO3wFKarGjDNRMr81TJcjv55Z5T8o=" crossorigin="anonymous" media="screen" />
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css" integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin="anonymous" media="screen" />
+  
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/img/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-dark">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    <a class="navigation-title" href="https://null0labs.com/">
+      Null0 Labs
+    </a>
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/">Home</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/blog/">Blog</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/about/">About</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container page">
+  <article>
+    <header>
+      <h1 class="title">
+        <a class="title-link" href="https://null0labs.com/blog/vxlan-evpn-leaf-and-spine/">
+          VXLAN EVPN Spine and Leaf
+        </a>
+      </h1>
+    </header>
+
+    <h2 id="introduction">
+  Introduction
+  <a class="heading-link" href="#introduction">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>The VXLAN EVPN Leaf and Spine architecture has become the backbone of scalable, multi-tenant network design. This blog post showcases a lab simulation built around this topology, highlighting configuration examples, verification tests, and insights into why this design is foundational for modern data centers.</p>
+<p>We&rsquo;ll explore:</p>
+<ul>
+<li>Why leaf and spine is ideal for multi-tenant overlays</li>
+<li>Configuration snippets from the lab topology</li>
+<li>Ping and trace outputs between tenant workloads</li>
+<li>Mnemonic VNI/VLAN/VRF schemes that reinforce automation and clarity</li>
+</ul>
+<hr>
+<p><img src="feature.jpeg" alt="Network"></p>
+<h2 id="lab-topology-overview">
+  Lab Topology Overview
+  <a class="heading-link" href="#lab-topology-overview">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Our lab features:</p>
+<ul>
+<li><strong>Spine Switches</strong>: <code>SPINE1</code>, <code>SPINE2</code></li>
+<li><strong>Leaf Switches</strong>: <code>LEAF1</code>, <code>LEAF2</code>, <code>LEAF3</code></li>
+<li><strong>Tenants</strong>:
+<ul>
+<li><strong>Tenant 1</strong>
+<ul>
+<li>VLANs: 10, 11</li>
+<li>L2VNIs: 100010, 100011</li>
+<li>L3VNI: 903966</li>
+</ul>
+</li>
+<li><strong>Tenant 2</strong>
+<ul>
+<li>VLAN: 20</li>
+<li>L2VNI: 100020</li>
+<li>L3VNI: 903965</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Servers</strong>: Vx-Server0x (distributed across leafs by VLAN)</li>
+<li><strong>External Gateway</strong>: <code>External-GW</code> with internet access</li>
+</ul>
+<p>This setup allows isolated traffic per tenant with VXLAN encapsulation across the fabric, tested with L2 and L3 verification.</p>
+<hr>
+<h2 id="why-leaf-and-spine">
+  Why Leaf and Spine?
+  <a class="heading-link" href="#why-leaf-and-spine">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Leaf and spine is more than just symmetry—it’s scalability and determinism rolled into a modular fabric. Here&rsquo;s why it shines in this context:</p>
+<ul>
+<li><strong>Predictable Latency</strong>: Every leaf has an equal-cost path to every spine, avoiding bottlenecks.</li>
+<li><strong>Efficient East-West Traffic</strong>: Ideal for VM-to-VM or container-to-container flows across racks.</li>
+<li><strong>Horizontal Scalability</strong>: Need more ports or tenants? Add leaf switches without redesign.</li>
+<li><strong>Overlay Ready</strong>: Perfect base for VXLAN EVPN, allowing tenant separation with route reflectors, control plane learning, and gateway integration.</li>
+</ul>
+<p>For labs like this one, it offers a rich playground to test tenant isolation and path validation—without compromising clarity or control.</p>
+<hr>
+<h2 id="configurations">
+  Configurations
+  <a class="heading-link" href="#configurations">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<h3 id="spine1-configuration">
+  SPINE1 Configuration
+  <a class="heading-link" href="#spine1-configuration">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hostname SPINE1
+</span></span><span style="display:flex;"><span>vdc SPINE1 id <span style="color:#a5d6ff">1</span>
+</span></span><span style="display:flex;"><span>  limit-resource vlan minimum <span style="color:#a5d6ff">16</span> maximum <span style="color:#a5d6ff">4094</span>
+</span></span><span style="display:flex;"><span>  limit-resource vrf minimum <span style="color:#a5d6ff">2</span> maximum <span style="color:#a5d6ff">4096</span>
+</span></span><span style="display:flex;"><span>  limit-resource port-channel minimum <span style="color:#a5d6ff">0</span> maximum <span style="color:#a5d6ff">511</span>
+</span></span><span style="display:flex;"><span>  limit-resource m4route-mem minimum <span style="color:#a5d6ff">58</span> maximum <span style="color:#a5d6ff">58</span>
+</span></span><span style="display:flex;"><span>  limit-resource m6route-mem minimum <span style="color:#a5d6ff">8</span> maximum <span style="color:#a5d6ff">8</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>nv overlay evpn
+</span></span><span style="display:flex;"><span>feature ospf
+</span></span><span style="display:flex;"><span>feature bgp
+</span></span><span style="display:flex;"><span>feature pim
+</span></span><span style="display:flex;"><span>feature fabric forwarding
+</span></span><span style="display:flex;"><span>feature interface-vlan
+</span></span><span style="display:flex;"><span>feature vn-segment-vlan-based
+</span></span><span style="display:flex;"><span>feature nv overlay
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>no password strength-check
+</span></span><span style="display:flex;"><span>username admin password <span style="color:#a5d6ff">5</span> <span style="color:#79c0ff">$5$HPNPAK$nM</span>/4cmiWsr//sYW4DSVkVXbeUNffKAzPT/5wfuteXe2 role network-admin
+</span></span><span style="display:flex;"><span>no ip domain-lookup
+</span></span><span style="display:flex;"><span>ip domain-name dc1.null0labs.net
+</span></span><span style="display:flex;"><span>copp profile strict
+</span></span><span style="display:flex;"><span>snmp-server user admin network-admin auth md5 0064FB27814D8DBE514A18B8E8BFE6279D
+</span></span><span style="display:flex;"><span>DE priv aes-128 0070D410AF7AE39744422FF7A7E0A67AD998 localizedV2key
+</span></span><span style="display:flex;"><span>rmon event <span style="color:#a5d6ff">1</span> log trap public description FATAL<span style="color:#ff7b72;font-weight:bold">(</span>1<span style="color:#ff7b72;font-weight:bold">)</span> owner PMON@FATAL
+</span></span><span style="display:flex;"><span>rmon event <span style="color:#a5d6ff">2</span> log trap public description CRITICAL<span style="color:#ff7b72;font-weight:bold">(</span>2<span style="color:#ff7b72;font-weight:bold">)</span> owner PMON@CRITICAL
+</span></span><span style="display:flex;"><span>rmon event <span style="color:#a5d6ff">3</span> log trap public description ERROR<span style="color:#ff7b72;font-weight:bold">(</span>3<span style="color:#ff7b72;font-weight:bold">)</span> owner PMON@ERROR
+</span></span><span style="display:flex;"><span>rmon event <span style="color:#a5d6ff">4</span> log trap public description WARNING<span style="color:#ff7b72;font-weight:bold">(</span>4<span style="color:#ff7b72;font-weight:bold">)</span> owner PMON@WARNING
+</span></span><span style="display:flex;"><span>rmon event <span style="color:#a5d6ff">5</span> log trap public description INFORMATION<span style="color:#ff7b72;font-weight:bold">(</span>5<span style="color:#ff7b72;font-weight:bold">)</span> owner PMON@INFO
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ip pim rp-address 10.0.0.254 group-list 224.0.0.0/4
+</span></span><span style="display:flex;"><span>ip pim ssm range 232.0.0.0/8
+</span></span><span style="display:flex;"><span>ip pim anycast-rp 10.0.0.254 10.0.0.1
+</span></span><span style="display:flex;"><span>ip pim anycast-rp 10.0.0.254 10.0.0.2
+</span></span><span style="display:flex;"><span>vlan <span style="color:#a5d6ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vrf context management
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface Vlan1
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface Ethernet1/1
+</span></span><span style="display:flex;"><span>  description SPINE1-TO-LEAF1
+</span></span><span style="display:flex;"><span>  mtu <span style="color:#a5d6ff">9216</span>
+</span></span><span style="display:flex;"><span>  medium p2p
+</span></span><span style="display:flex;"><span>  ip unnumbered loopback0
+</span></span><span style="display:flex;"><span>  ip router ospf UNDERLAY area 0.0.0.0
+</span></span><span style="display:flex;"><span>  ip pim sparse-mode
+</span></span><span style="display:flex;"><span>  no shutdown
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface Ethernet1/2
+</span></span><span style="display:flex;"><span>  description SPINE1-TO-LEAF2
+</span></span><span style="display:flex;"><span>  mtu <span style="color:#a5d6ff">9216</span>
+</span></span><span style="display:flex;"><span>  medium p2p
+</span></span><span style="display:flex;"><span>  ip unnumbered loopback0
+</span></span><span style="display:flex;"><span>  ip router ospf UNDERLAY area 0.0.0.0
+</span></span><span style="display:flex;"><span>  ip pim sparse-mode
+</span></span><span style="display:flex;"><span>  no shutdown
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface Ethernet1/3
+</span></span><span style="display:flex;"><span>  description SPINE1-TO-LEAF3
+</span></span><span style="display:flex;"><span>  mtu <span style="color:#a5d6ff">9216</span>
+</span></span><span style="display:flex;"><span>  medium p2p
+</span></span><span style="display:flex;"><span>  ip unnumbered loopback0
+</span></span><span style="display:flex;"><span>  ip router ospf UNDERLAY area 0.0.0.0
+</span></span><span style="display:flex;"><span>  ip pim sparse-mode
+</span></span><span style="display:flex;"><span>  no shutdown
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface mgmt0
+</span></span><span style="display:flex;"><span>  vrf member management
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface loopback0
+</span></span><span style="display:flex;"><span>  description SPINE1-LOOPBACK
+</span></span><span style="display:flex;"><span>  ip address 10.0.0.1/32
+</span></span><span style="display:flex;"><span>  ip router ospf UNDERLAY area 0.0.0.0
+</span></span><span style="display:flex;"><span>  ip pim sparse-mode
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface loopback1
+</span></span><span style="display:flex;"><span>  description SPINE1-RP
+</span></span><span style="display:flex;"><span>  ip address 10.0.0.254/32
+</span></span><span style="display:flex;"><span>  ip router ospf UNDERLAY area 0.0.0.0
+</span></span><span style="display:flex;"><span>  ip pim sparse-mode
+</span></span><span style="display:flex;"><span>icam monitor scale
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>line console
+</span></span><span style="display:flex;"><span>line vty
+</span></span><span style="display:flex;"><span>boot nxos bootflash:/nxos64-cs.10.5.2.F.bin
+</span></span><span style="display:flex;"><span>router ospf UNDERLAY
+</span></span><span style="display:flex;"><span>  log-adjacency-changes
+</span></span><span style="display:flex;"><span>router bgp <span style="color:#a5d6ff">64500</span>
+</span></span><span style="display:flex;"><span>  log-neighbor-changes
+</span></span><span style="display:flex;"><span>  address-family ipv4 unicast
+</span></span><span style="display:flex;"><span>  address-family l2vpn evpn
+</span></span><span style="display:flex;"><span>    retain route-target all
+</span></span><span style="display:flex;"><span>  template peer LEAF
+</span></span><span style="display:flex;"><span>    remote-as <span style="color:#a5d6ff">64500</span>
+</span></span><span style="display:flex;"><span>    update-source loopback0
+</span></span><span style="display:flex;"><span>    address-family ipv4 unicast
+</span></span><span style="display:flex;"><span>      send-community extended
+</span></span><span style="display:flex;"><span>      route-reflector-client
+</span></span><span style="display:flex;"><span>      soft-reconfiguration inbound
+</span></span><span style="display:flex;"><span>    address-family l2vpn evpn
+</span></span><span style="display:flex;"><span>      send-community
+</span></span><span style="display:flex;"><span>      send-community extended
+</span></span><span style="display:flex;"><span>      route-reflector-client
+</span></span><span style="display:flex;"><span>  neighbor 10.0.0.3
+</span></span><span style="display:flex;"><span>    inherit peer LEAF
+</span></span><span style="display:flex;"><span>  neighbor 10.0.0.4
+</span></span><span style="display:flex;"><span>    inherit peer LEAF
+</span></span><span style="display:flex;"><span>  neighbor 10.0.0.5
+</span></span><span style="display:flex;"><span>    inherit peer LEAF
+</span></span><span style="display:flex;"><span>cli alias name wr copy running-config startup-config
+</span></span></code></pre></div><h3 id="spine2-configuration">
+  SPINE2 Configuration
+  <a class="heading-link" href="#spine2-configuration">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hostname SPINE2
+</span></span><span style="display:flex;"><span>vdc SPINE2 id <span style="color:#a5d6ff">1</span>
+</span></span><span style="display:flex;"><span>  limit-resource vlan minimum <span style="color:#a5d6ff">16</span> maximum <span style="color:#a5d6ff">4094</span>
+</span></span><span style="display:flex;"><span>  limit-resource vrf minimum <span style="color:#a5d6ff">2</span> maximum <span style="color:#a5d6ff">4096</span>
+</span></span><span style="display:flex;"><span>  limit-resource port-channel minimum <span style="color:#a5d6ff">0</span> maximum <span style="color:#a5d6ff">511</span>
+</span></span><span style="display:flex;"><span>  limit-resource m4route-mem minimum <span style="color:#a5d6ff">58</span> maximum <span style="color:#a5d6ff">58</span>
+</span></span><span style="display:flex;"><span>  limit-resource m6route-mem minimum <span style="color:#a5d6ff">8</span> maximum <span style="color:#a5d6ff">8</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>nv overlay evpn
+</span></span><span style="display:flex;"><span>feature ospf
+</span></span><span style="display:flex;"><span>feature bgp
+</span></span><span style="display:flex;"><span>feature pim
+</span></span><span style="display:flex;"><span>feature fabric forwarding
+</span></span><span style="display:flex;"><span>feature interface-vlan
+</span></span><span style="display:flex;"><span>feature vn-segment-vlan-based
+</span></span><span style="display:flex;"><span>feature nv overlay
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>no password strength-check
+</span></span><span style="display:flex;"><span>username admin password <span style="color:#a5d6ff">5</span> <span style="color:#79c0ff">$5$FBKENH$GsbygrPlMOEe8uPuwwT1xxFEz8z</span>.DtzRULg0fNHaM13 role network-admin
+</span></span><span style="display:flex;"><span>no ip domain-lookup
+</span></span><span style="display:flex;"><span>ip domain-name dc1.null0labs.net
+</span></span><span style="display:flex;"><span>copp profile strict
+</span></span><span style="display:flex;"><span>snmp-server user admin network-admin auth md5 056AE430FF7A1C696E0CEDAAF1AE6DC9C1
+</span></span><span style="display:flex;"><span>FD priv aes-128 057ED31EC814357C663BA2E5AEEE308D87F8 localizedV2key
+</span></span><span style="display:flex;"><span>rmon event <span style="color:#a5d6ff">1</span> log trap public description FATAL<span style="color:#ff7b72;font-weight:bold">(</span>1<span style="color:#ff7b72;font-weight:bold">)</span> owner PMON@FATAL
+</span></span><span style="display:flex;"><span>rmon event <span style="color:#a5d6ff">2</span> log trap public description CRITICAL<span style="color:#ff7b72;font-weight:bold">(</span>2<span style="color:#ff7b72;font-weight:bold">)</span> owner PMON@CRITICAL
+</span></span><span style="display:flex;"><span>rmon event <span style="color:#a5d6ff">3</span> log trap public description ERROR<span style="color:#ff7b72;font-weight:bold">(</span>3<span style="color:#ff7b72;font-weight:bold">)</span> owner PMON@ERROR
+</span></span><span style="display:flex;"><span>rmon event <span style="color:#a5d6ff">4</span> log trap public description WARNING<span style="color:#ff7b72;font-weight:bold">(</span>4<span style="color:#ff7b72;font-weight:bold">)</span> owner PMON@WARNING
+</span></span><span style="display:flex;"><span>rmon event <span style="color:#a5d6ff">5</span> log trap public description INFORMATION<span style="color:#ff7b72;font-weight:bold">(</span>5<span style="color:#ff7b72;font-weight:bold">)</span> owner PMON@INFO
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ip pim rp-address 10.0.0.254 group-list 224.0.0.0/4
+</span></span><span style="display:flex;"><span>ip pim ssm range 232.0.0.0/8
+</span></span><span style="display:flex;"><span>ip pim anycast-rp 10.0.0.254 10.0.0.1
+</span></span><span style="display:flex;"><span>ip pim anycast-rp 10.0.0.254 10.0.0.2
+</span></span><span style="display:flex;"><span>vlan <span style="color:#a5d6ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vrf context management
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface Vlan1
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface Ethernet1/1
+</span></span><span style="display:flex;"><span>  description SPINE2-TO-LEAF1
+</span></span><span style="display:flex;"><span>  mtu <span style="color:#a5d6ff">9216</span>
+</span></span><span style="display:flex;"><span>  medium p2p
+</span></span><span style="display:flex;"><span>  ip unnumbered loopback0
+</span></span><span style="display:flex;"><span>  ip router ospf UNDERLAY area 0.0.0.0
+</span></span><span style="display:flex;"><span>  ip pim sparse-mode
+</span></span><span style="display:flex;"><span>  no shutdown
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface Ethernet1/2
+</span></span><span style="display:flex;"><span>  description SPINE2-TO-LEAF2
+</span></span><span style="display:flex;"><span>  mtu <span style="color:#a5d6ff">9216</span>
+</span></span><span style="display:flex;"><span>  medium p2p
+</span></span><span style="display:flex;"><span>  ip unnumbered loopback0
+</span></span><span style="display:flex;"><span>  ip router ospf UNDERLAY area 0.0.0.0
+</span></span><span style="display:flex;"><span>  ip pim sparse-mode
+</span></span><span style="display:flex;"><span>  no shutdown
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface Ethernet1/3
+</span></span><span style="display:flex;"><span>  description SPINE2-TO-LEAF3
+</span></span><span style="display:flex;"><span>  mtu <span style="color:#a5d6ff">9216</span>
+</span></span><span style="display:flex;"><span>  medium p2p
+</span></span><span style="display:flex;"><span>  ip unnumbered loopback0
+</span></span><span style="display:flex;"><span>  ip router ospf UNDERLAY area 0.0.0.0
+</span></span><span style="display:flex;"><span>  ip pim sparse-mode
+</span></span><span style="display:flex;"><span>  no shutdown
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface mgmt0
+</span></span><span style="display:flex;"><span>  vrf member management
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface loopback0
+</span></span><span style="display:flex;"><span>  description SPINE2-LOOPBACK
+</span></span><span style="display:flex;"><span>  ip address 10.0.0.2/32
+</span></span><span style="display:flex;"><span>  ip router ospf UNDERLAY area 0.0.0.0
+</span></span><span style="display:flex;"><span>  ip pim sparse-mode
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface loopback1
+</span></span><span style="display:flex;"><span>  description SPINE2-RP
+</span></span><span style="display:flex;"><span>  ip address 10.0.0.254/32
+</span></span><span style="display:flex;"><span>  ip router ospf UNDERLAY area 0.0.0.0
+</span></span><span style="display:flex;"><span>  ip pim sparse-mode
+</span></span><span style="display:flex;"><span>icam monitor scale
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>line console
+</span></span><span style="display:flex;"><span>line vty
+</span></span><span style="display:flex;"><span>boot nxos bootflash:/nxos64-cs.10.5.2.F.bin
+</span></span><span style="display:flex;"><span>router ospf UNDERLAY
+</span></span><span style="display:flex;"><span>  log-adjacency-changes
+</span></span><span style="display:flex;"><span>router bgp <span style="color:#a5d6ff">64500</span>
+</span></span><span style="display:flex;"><span>  log-neighbor-changes
+</span></span><span style="display:flex;"><span>  address-family ipv4 unicast
+</span></span><span style="display:flex;"><span>  address-family l2vpn evpn
+</span></span><span style="display:flex;"><span>    retain route-target all
+</span></span><span style="display:flex;"><span>  template peer LEAF
+</span></span><span style="display:flex;"><span>    remote-as <span style="color:#a5d6ff">64500</span>
+</span></span><span style="display:flex;"><span>    update-source loopback0
+</span></span><span style="display:flex;"><span>    address-family ipv4 unicast
+</span></span><span style="display:flex;"><span>      send-community extended
+</span></span><span style="display:flex;"><span>      route-reflector-client
+</span></span><span style="display:flex;"><span>      soft-reconfiguration inbound
+</span></span><span style="display:flex;"><span>    address-family l2vpn evpn
+</span></span><span style="display:flex;"><span>      send-community
+</span></span><span style="display:flex;"><span>      send-community extended
+</span></span><span style="display:flex;"><span>      route-reflector-client
+</span></span><span style="display:flex;"><span>  neighbor 10.0.0.3
+</span></span><span style="display:flex;"><span>    inherit peer LEAF
+</span></span><span style="display:flex;"><span>  neighbor 10.0.0.4
+</span></span><span style="display:flex;"><span>    inherit peer LEAF
+</span></span><span style="display:flex;"><span>  neighbor 10.0.0.5
+</span></span><span style="display:flex;"><span>    inherit peer LEAF    
+</span></span><span style="display:flex;"><span>cli alias name wr copy running-config startup-config
+</span></span></code></pre></div><h3 id="leaf1-configuration">
+  LEAF1 Configuration
+  <a class="heading-link" href="#leaf1-configuration">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hostname LEAF1
+</span></span><span style="display:flex;"><span>vdc LEAF1 id <span style="color:#a5d6ff">1</span>
+</span></span><span style="display:flex;"><span>  limit-resource vlan minimum <span style="color:#a5d6ff">16</span> maximum <span style="color:#a5d6ff">4094</span>
+</span></span><span style="display:flex;"><span>  limit-resource vrf minimum <span style="color:#a5d6ff">2</span> maximum <span style="color:#a5d6ff">4096</span>
+</span></span><span style="display:flex;"><span>  limit-resource port-channel minimum <span style="color:#a5d6ff">0</span> maximum <span style="color:#a5d6ff">511</span>
+</span></span><span style="display:flex;"><span>  limit-resource m4route-mem minimum <span style="color:#a5d6ff">58</span> maximum <span style="color:#a5d6ff">58</span>
+</span></span><span style="display:flex;"><span>  limit-resource m6route-mem minimum <span style="color:#a5d6ff">8</span> maximum <span style="color:#a5d6ff">8</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>nv overlay evpn
+</span></span><span style="display:flex;"><span>feature ospf
+</span></span><span style="display:flex;"><span>feature bgp
+</span></span><span style="display:flex;"><span>feature pim
+</span></span><span style="display:flex;"><span>feature fabric forwarding
+</span></span><span style="display:flex;"><span>feature interface-vlan
+</span></span><span style="display:flex;"><span>feature vn-segment-vlan-based
+</span></span><span style="display:flex;"><span>feature nv overlay
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>no password strength-check
+</span></span><span style="display:flex;"><span>username admin password <span style="color:#a5d6ff">5</span> <span style="color:#79c0ff">$5$JFHIKL$Z79VngrOdMmeIRuhNdhwHilYkYPSYztAhy02lhCNjq1</span> role network-admin
+</span></span><span style="display:flex;"><span>no ip domain-lookup
+</span></span><span style="display:flex;"><span>ip domain-name dc1.null0labs.net
+</span></span><span style="display:flex;"><span>copp profile strict
+</span></span><span style="display:flex;"><span>hardware access-list tcam region racl <span style="color:#a5d6ff">512</span>
+</span></span><span style="display:flex;"><span>hardware access-list tcam region arp-ether <span style="color:#a5d6ff">256</span> double-wide
+</span></span><span style="display:flex;"><span>snmp-server user admin network-admin auth md5 3229F65BF9CE8ACA0ADFC00054F0077F31
+</span></span><span style="display:flex;"><span><span style="color:#a5d6ff">55</span> priv aes-128 3228F153D7CF85C611D9D73140E1127D665A localizedV2key
+</span></span><span style="display:flex;"><span>rmon event <span style="color:#a5d6ff">1</span> log trap public description FATAL<span style="color:#ff7b72;font-weight:bold">(</span>1<span style="color:#ff7b72;font-weight:bold">)</span> owner PMON@FATAL
+</span></span><span style="display:flex;"><span>rmon event <span style="color:#a5d6ff">2</span> log trap public description CRITICAL<span style="color:#ff7b72;font-weight:bold">(</span>2<span style="color:#ff7b72;font-weight:bold">)</span> owner PMON@CRITICAL
+</span></span><span style="display:flex;"><span>rmon event <span style="color:#a5d6ff">3</span> log trap public description ERROR<span style="color:#ff7b72;font-weight:bold">(</span>3<span style="color:#ff7b72;font-weight:bold">)</span> owner PMON@ERROR
+</span></span><span style="display:flex;"><span>rmon event <span style="color:#a5d6ff">4</span> log trap public description WARNING<span style="color:#ff7b72;font-weight:bold">(</span>4<span style="color:#ff7b72;font-weight:bold">)</span> owner PMON@WARNING
+</span></span><span style="display:flex;"><span>rmon event <span style="color:#a5d6ff">5</span> log trap public description INFORMATION<span style="color:#ff7b72;font-weight:bold">(</span>5<span style="color:#ff7b72;font-weight:bold">)</span> owner PMON@INFO
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>fabric forwarding anycast-gateway-mac 0000.1111.1111
+</span></span><span style="display:flex;"><span>ip pim rp-address 10.0.0.254 group-list 224.0.0.0/4
+</span></span><span style="display:flex;"><span>ip pim ssm range 232.0.0.0/8
+</span></span><span style="display:flex;"><span>vlan 1,10,11,20,3965-3966
+</span></span><span style="display:flex;"><span>vlan <span style="color:#a5d6ff">10</span>
+</span></span><span style="display:flex;"><span>  vn-segment <span style="color:#a5d6ff">100010</span>
+</span></span><span style="display:flex;"><span>vlan <span style="color:#a5d6ff">11</span>
+</span></span><span style="display:flex;"><span>  vn-segment <span style="color:#a5d6ff">100011</span>
+</span></span><span style="display:flex;"><span>vlan <span style="color:#a5d6ff">20</span>
+</span></span><span style="display:flex;"><span>  vn-segment <span style="color:#a5d6ff">100020</span>
+</span></span><span style="display:flex;"><span>vlan <span style="color:#a5d6ff">3965</span>
+</span></span><span style="display:flex;"><span>  vn-segment <span style="color:#a5d6ff">903965</span>
+</span></span><span style="display:flex;"><span>vlan <span style="color:#a5d6ff">3966</span>
+</span></span><span style="display:flex;"><span>  vn-segment <span style="color:#a5d6ff">903966</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vrf context OVERLAY-TENANT-1
+</span></span><span style="display:flex;"><span>  vni <span style="color:#a5d6ff">903966</span>
+</span></span><span style="display:flex;"><span>  rd auto
+</span></span><span style="display:flex;"><span>  address-family ipv4 unicast
+</span></span><span style="display:flex;"><span>    route-target both auto
+</span></span><span style="display:flex;"><span>    route-target both auto evpn
+</span></span><span style="display:flex;"><span>vrf context OVERLAY-TENANT-2
+</span></span><span style="display:flex;"><span>  vni <span style="color:#a5d6ff">903965</span>
+</span></span><span style="display:flex;"><span>  rd auto
+</span></span><span style="display:flex;"><span>  address-family ipv4 unicast
+</span></span><span style="display:flex;"><span>    route-target both auto
+</span></span><span style="display:flex;"><span>    route-target both auto evpn
+</span></span><span style="display:flex;"><span>vrf context management
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface Vlan1
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface Vlan10
+</span></span><span style="display:flex;"><span>  no shutdown
+</span></span><span style="display:flex;"><span>  vrf member OVERLAY-TENANT-1
+</span></span><span style="display:flex;"><span>  ip address 10.10.1.254/24
+</span></span><span style="display:flex;"><span>  fabric forwarding mode anycast-gateway
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface Vlan11
+</span></span><span style="display:flex;"><span>  no shutdown
+</span></span><span style="display:flex;"><span>  vrf member OVERLAY-TENANT-1
+</span></span><span style="display:flex;"><span>  ip address 10.11.1.254/24
+</span></span><span style="display:flex;"><span>  fabric forwarding mode anycast-gateway
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface VLAN20
+</span></span><span style="display:flex;"><span>  no shutdown
+</span></span><span style="display:flex;"><span>  vrf member OVERLAY-TENANT-2
+</span></span><span style="display:flex;"><span>  ip address 10.20.1.254/24
+</span></span><span style="display:flex;"><span>  fabric forwarding mode anycast-gateway
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface Vlan3965
+</span></span><span style="display:flex;"><span>  no shutdown
+</span></span><span style="display:flex;"><span>  vrf member OVERLAY-TENANT-2
+</span></span><span style="display:flex;"><span>  ip forward
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface Vlan3966
+</span></span><span style="display:flex;"><span>  no shutdown
+</span></span><span style="display:flex;"><span>  vrf member OVERLAY-TENANT-1
+</span></span><span style="display:flex;"><span>  ip forward
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface nve1
+</span></span><span style="display:flex;"><span>  description NVE1
+</span></span><span style="display:flex;"><span>  no shutdown
+</span></span><span style="display:flex;"><span>  host-reachability protocol bgp
+</span></span><span style="display:flex;"><span>  source-interface loopback0
+</span></span><span style="display:flex;"><span>  member vni <span style="color:#a5d6ff">100010</span>
+</span></span><span style="display:flex;"><span>    suppress-arp
+</span></span><span style="display:flex;"><span>    mcast-group 224.1.1.10
+</span></span><span style="display:flex;"><span>  member vni <span style="color:#a5d6ff">100011</span>
+</span></span><span style="display:flex;"><span>    suppress-arp
+</span></span><span style="display:flex;"><span>    mcast-group 224.1.1.11
+</span></span><span style="display:flex;"><span>  member vni <span style="color:#a5d6ff">100020</span>
+</span></span><span style="display:flex;"><span>    suppress-arp
+</span></span><span style="display:flex;"><span>    mcast-group 224.1.1.20
+</span></span><span style="display:flex;"><span>  member vni <span style="color:#a5d6ff">903965</span> associate-vrf
+</span></span><span style="display:flex;"><span>  member vni <span style="color:#a5d6ff">903966</span> associate-vrf
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface Ethernet1/1
+</span></span><span style="display:flex;"><span>  description SPINE1
+</span></span><span style="display:flex;"><span>  mtu <span style="color:#a5d6ff">9216</span>
+</span></span><span style="display:flex;"><span>  medium p2p
+</span></span><span style="display:flex;"><span>  ip unnumbered loopback0
+</span></span><span style="display:flex;"><span>  ip router ospf UNDERLAY area 0.0.0.0
+</span></span><span style="display:flex;"><span>  ip pim sparse-mode
+</span></span><span style="display:flex;"><span>  no shutdown
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface Ethernet1/2
+</span></span><span style="display:flex;"><span>  description SPINE2
+</span></span><span style="display:flex;"><span>  mtu <span style="color:#a5d6ff">9216</span>
+</span></span><span style="display:flex;"><span>  medium p2p
+</span></span><span style="display:flex;"><span>  ip unnumbered loopback0
+</span></span><span style="display:flex;"><span>  ip router ospf UNDERLAY area 0.0.0.0
+</span></span><span style="display:flex;"><span>  ip pim sparse-mode
+</span></span><span style="display:flex;"><span>  no shutdown
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface Ethernet1/3
+</span></span><span style="display:flex;"><span>  description TENANT1-VLAN10-SERVER01
+</span></span><span style="display:flex;"><span>  switchport
+</span></span><span style="display:flex;"><span>  switchport access vlan <span style="color:#a5d6ff">10</span>
+</span></span><span style="display:flex;"><span>  no shutdown
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface Ethernet1/4
+</span></span><span style="display:flex;"><span>  description TENANT1-VLAN11-SERVER01
+</span></span><span style="display:flex;"><span>  switchport
+</span></span><span style="display:flex;"><span>  switchport access vlan <span style="color:#a5d6ff">11</span>
+</span></span><span style="display:flex;"><span>  no shutdown
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface Ethernet1/5
+</span></span><span style="display:flex;"><span>  description TENANT2-VLAN20-SERVER01
+</span></span><span style="display:flex;"><span>  switchport
+</span></span><span style="display:flex;"><span>  switchport access vlan <span style="color:#a5d6ff">20</span>
+</span></span><span style="display:flex;"><span>  no shutdown
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface mgmt0
+</span></span><span style="display:flex;"><span>  vrf member management
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface loopback0
+</span></span><span style="display:flex;"><span>  description LEAF1-LOOPBACK
+</span></span><span style="display:flex;"><span>  ip address 10.0.0.3/32
+</span></span><span style="display:flex;"><span>  ip router ospf UNDERLAY area 0.0.0.0
+</span></span><span style="display:flex;"><span>  ip pim sparse-mode
+</span></span><span style="display:flex;"><span>icam monitor scale
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>line console
+</span></span><span style="display:flex;"><span>line vty
+</span></span><span style="display:flex;"><span>boot nxos bootflash:/nxos64-cs.10.5.2.F.bin
+</span></span><span style="display:flex;"><span>router ospf UNDERLAY
+</span></span><span style="display:flex;"><span>  log-adjacency-changes
+</span></span><span style="display:flex;"><span>router bgp <span style="color:#a5d6ff">64500</span>
+</span></span><span style="display:flex;"><span>  log-neighbor-changes
+</span></span><span style="display:flex;"><span>  address-family ipv4 unicast
+</span></span><span style="display:flex;"><span>  address-family l2vpn evpn
+</span></span><span style="display:flex;"><span>  template peer SPINE
+</span></span><span style="display:flex;"><span>    remote-as <span style="color:#a5d6ff">64500</span>
+</span></span><span style="display:flex;"><span>    update-source loopback0
+</span></span><span style="display:flex;"><span>    address-family ipv4 unicast
+</span></span><span style="display:flex;"><span>      send-community extended
+</span></span><span style="display:flex;"><span>      soft-reconfiguration inbound
+</span></span><span style="display:flex;"><span>    address-family l2vpn evpn
+</span></span><span style="display:flex;"><span>      send-community
+</span></span><span style="display:flex;"><span>      send-community extended
+</span></span><span style="display:flex;"><span>  neighbor 10.0.0.1
+</span></span><span style="display:flex;"><span>    inherit peer SPINE
+</span></span><span style="display:flex;"><span>  neighbor 10.0.0.2
+</span></span><span style="display:flex;"><span>    inherit peer SPINE
+</span></span><span style="display:flex;"><span>  vrf OVERLAY-TENANT-1
+</span></span><span style="display:flex;"><span>    log-neighbor-changes
+</span></span><span style="display:flex;"><span>    address-family ipv4 unicast
+</span></span><span style="display:flex;"><span>      network 10.10.1.0/24
+</span></span><span style="display:flex;"><span>      network 10.11.1.0/24
+</span></span><span style="display:flex;"><span>  vrf OVERLAY-TENANT-2
+</span></span><span style="display:flex;"><span>    log-neighbor-changes
+</span></span><span style="display:flex;"><span>    address-family ipv4 unicast
+</span></span><span style="display:flex;"><span>      network 10.20.1.0/24
+</span></span><span style="display:flex;"><span>evpn
+</span></span><span style="display:flex;"><span>  vni <span style="color:#a5d6ff">100010</span> l2
+</span></span><span style="display:flex;"><span>    rd auto
+</span></span><span style="display:flex;"><span>    route-target import auto
+</span></span><span style="display:flex;"><span>    route-target export auto
+</span></span><span style="display:flex;"><span>  vni <span style="color:#a5d6ff">100011</span> l2
+</span></span><span style="display:flex;"><span>    rd auto
+</span></span><span style="display:flex;"><span>    route-target import auto
+</span></span><span style="display:flex;"><span>    route-target export auto
+</span></span><span style="display:flex;"><span>  vni <span style="color:#a5d6ff">100020</span> l2
+</span></span><span style="display:flex;"><span>    rd auto
+</span></span><span style="display:flex;"><span>    route-target import auto
+</span></span><span style="display:flex;"><span>    route-target export auto
+</span></span><span style="display:flex;"><span>cli alias name wr copy running-config startup-config
+</span></span></code></pre></div><h3 id="leaf2-configuration">
+  LEAF2 Configuration
+  <a class="heading-link" href="#leaf2-configuration">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hostname LEAF2
+</span></span><span style="display:flex;"><span>vdc LEAF2 id <span style="color:#a5d6ff">1</span>
+</span></span><span style="display:flex;"><span>  limit-resource vlan minimum <span style="color:#a5d6ff">16</span> maximum <span style="color:#a5d6ff">4094</span>
+</span></span><span style="display:flex;"><span>  limit-resource vrf minimum <span style="color:#a5d6ff">2</span> maximum <span style="color:#a5d6ff">4096</span>
+</span></span><span style="display:flex;"><span>  limit-resource port-channel minimum <span style="color:#a5d6ff">0</span> maximum <span style="color:#a5d6ff">511</span>
+</span></span><span style="display:flex;"><span>  limit-resource m4route-mem minimum <span style="color:#a5d6ff">58</span> maximum <span style="color:#a5d6ff">58</span>
+</span></span><span style="display:flex;"><span>  limit-resource m6route-mem minimum <span style="color:#a5d6ff">8</span> maximum <span style="color:#a5d6ff">8</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>nv overlay evpn
+</span></span><span style="display:flex;"><span>feature ospf
+</span></span><span style="display:flex;"><span>feature bgp
+</span></span><span style="display:flex;"><span>feature pim
+</span></span><span style="display:flex;"><span>feature fabric forwarding
+</span></span><span style="display:flex;"><span>feature interface-vlan
+</span></span><span style="display:flex;"><span>feature vn-segment-vlan-based
+</span></span><span style="display:flex;"><span>feature nv overlay
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>no password strength-check
+</span></span><span style="display:flex;"><span>username admin password <span style="color:#a5d6ff">5</span> <span style="color:#79c0ff">$5$LBPCDG$tYuyUoEnyr</span>/59n5V1PS21wHl5KpS.e.4JiDUCNN0Ja6 role network-admin
+</span></span><span style="display:flex;"><span>no ip domain-lookup
+</span></span><span style="display:flex;"><span>ip domain-name dc1.null0labs.net
+</span></span><span style="display:flex;"><span>copp profile strict
+</span></span><span style="display:flex;"><span>hardware access-list tcam region racl <span style="color:#a5d6ff">512</span>
+</span></span><span style="display:flex;"><span>hardware access-list tcam region arp-ether <span style="color:#a5d6ff">256</span> double-wide
+</span></span><span style="display:flex;"><span>snmp-server user admin network-admin auth md5 21607CCB4AC38FD18B1D1E2F7FF389DF62
+</span></span><span style="display:flex;"><span>BA priv aes-128 054F52F75EADD2DF841B086B2DA7DEA1479D localizedV2key
+</span></span><span style="display:flex;"><span>rmon event <span style="color:#a5d6ff">1</span> log trap public description FATAL<span style="color:#ff7b72;font-weight:bold">(</span>1<span style="color:#ff7b72;font-weight:bold">)</span> owner PMON@FATAL
+</span></span><span style="display:flex;"><span>rmon event <span style="color:#a5d6ff">2</span> log trap public description CRITICAL<span style="color:#ff7b72;font-weight:bold">(</span>2<span style="color:#ff7b72;font-weight:bold">)</span> owner PMON@CRITICAL
+</span></span><span style="display:flex;"><span>rmon event <span style="color:#a5d6ff">3</span> log trap public description ERROR<span style="color:#ff7b72;font-weight:bold">(</span>3<span style="color:#ff7b72;font-weight:bold">)</span> owner PMON@ERROR
+</span></span><span style="display:flex;"><span>rmon event <span style="color:#a5d6ff">4</span> log trap public description WARNING<span style="color:#ff7b72;font-weight:bold">(</span>4<span style="color:#ff7b72;font-weight:bold">)</span> owner PMON@WARNING
+</span></span><span style="display:flex;"><span>rmon event <span style="color:#a5d6ff">5</span> log trap public description INFORMATION<span style="color:#ff7b72;font-weight:bold">(</span>5<span style="color:#ff7b72;font-weight:bold">)</span> owner PMON@INFO
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>fabric forwarding anycast-gateway-mac 0000.1111.1111
+</span></span><span style="display:flex;"><span>ip pim rp-address 10.0.0.254 group-list 224.0.0.0/4
+</span></span><span style="display:flex;"><span>ip pim ssm range 232.0.0.0/8
+</span></span><span style="display:flex;"><span>vlan 1,10,11,20,3965-3966
+</span></span><span style="display:flex;"><span>vlan <span style="color:#a5d6ff">10</span>
+</span></span><span style="display:flex;"><span>  vn-segment <span style="color:#a5d6ff">100010</span>
+</span></span><span style="display:flex;"><span>vlan <span style="color:#a5d6ff">11</span>
+</span></span><span style="display:flex;"><span>  vn-segment <span style="color:#a5d6ff">100011</span>
+</span></span><span style="display:flex;"><span>vlan <span style="color:#a5d6ff">20</span>
+</span></span><span style="display:flex;"><span>  vn-segment <span style="color:#a5d6ff">100020</span>
+</span></span><span style="display:flex;"><span>vlan <span style="color:#a5d6ff">3965</span>
+</span></span><span style="display:flex;"><span>  vn-segment <span style="color:#a5d6ff">903965</span>
+</span></span><span style="display:flex;"><span>vlan <span style="color:#a5d6ff">3966</span>
+</span></span><span style="display:flex;"><span>  vn-segment <span style="color:#a5d6ff">903966</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vrf context OVERLAY-TENANT-1
+</span></span><span style="display:flex;"><span>  vni <span style="color:#a5d6ff">903966</span>
+</span></span><span style="display:flex;"><span>  rd auto
+</span></span><span style="display:flex;"><span>  address-family ipv4 unicast
+</span></span><span style="display:flex;"><span>    route-target both auto
+</span></span><span style="display:flex;"><span>    route-target both auto evpn
+</span></span><span style="display:flex;"><span>vrf context OVERLAY-TENANT-2
+</span></span><span style="display:flex;"><span>  vni <span style="color:#a5d6ff">903965</span>
+</span></span><span style="display:flex;"><span>  rd auto
+</span></span><span style="display:flex;"><span>  address-family ipv4 unicast
+</span></span><span style="display:flex;"><span>    route-target both auto
+</span></span><span style="display:flex;"><span>    route-target both auto evpn
+</span></span><span style="display:flex;"><span>vrf context management
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface Vlan1
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface Vlan10
+</span></span><span style="display:flex;"><span>  no shutdown
+</span></span><span style="display:flex;"><span>  vrf member OVERLAY-TENANT-1
+</span></span><span style="display:flex;"><span>  ip address 10.10.1.254/24
+</span></span><span style="display:flex;"><span>  fabric forwarding mode anycast-gateway
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface Vlan11
+</span></span><span style="display:flex;"><span>  no shutdown
+</span></span><span style="display:flex;"><span>  vrf member OVERLAY-TENANT-1
+</span></span><span style="display:flex;"><span>  ip address 10.11.1.254/24
+</span></span><span style="display:flex;"><span>  fabric forwarding mode anycast-gateway
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface Vlan20
+</span></span><span style="display:flex;"><span>  no shutdown
+</span></span><span style="display:flex;"><span>  vrf member OVERLAY-TENANT-2
+</span></span><span style="display:flex;"><span>  ip address 10.20.1.254/24
+</span></span><span style="display:flex;"><span>  fabric forwarding mode anycast-gateway
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface Vlan3965
+</span></span><span style="display:flex;"><span>  no shutdown
+</span></span><span style="display:flex;"><span>  vrf member OVERLAY-TENANT-2
+</span></span><span style="display:flex;"><span>  ip forward
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface Vlan3966
+</span></span><span style="display:flex;"><span>  no shutdown
+</span></span><span style="display:flex;"><span>  vrf member OVERLAY-TENANT-1
+</span></span><span style="display:flex;"><span>  ip forward
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface nve1
+</span></span><span style="display:flex;"><span> description NVE1
+</span></span><span style="display:flex;"><span>  no shutdown
+</span></span><span style="display:flex;"><span>  host-reachability protocol bgp
+</span></span><span style="display:flex;"><span>  source-interface loopback0
+</span></span><span style="display:flex;"><span>  member vni <span style="color:#a5d6ff">100010</span>
+</span></span><span style="display:flex;"><span>    suppress-arp
+</span></span><span style="display:flex;"><span>    mcast-group 224.1.1.10
+</span></span><span style="display:flex;"><span>  member vni <span style="color:#a5d6ff">100011</span>
+</span></span><span style="display:flex;"><span>    suppress-arp
+</span></span><span style="display:flex;"><span>    mcast-group 224.1.1.11
+</span></span><span style="display:flex;"><span>  member vni <span style="color:#a5d6ff">100020</span>
+</span></span><span style="display:flex;"><span>    suppress-arp
+</span></span><span style="display:flex;"><span>    mcast-group 224.1.1.20
+</span></span><span style="display:flex;"><span>  member vni <span style="color:#a5d6ff">903965</span> associate-vrf
+</span></span><span style="display:flex;"><span>  member vni <span style="color:#a5d6ff">903966</span> associate-vrf
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface Ethernet1/1
+</span></span><span style="display:flex;"><span>  description SPINE1
+</span></span><span style="display:flex;"><span>  mtu <span style="color:#a5d6ff">9216</span>
+</span></span><span style="display:flex;"><span>  medium p2p
+</span></span><span style="display:flex;"><span>  ip unnumbered loopback0
+</span></span><span style="display:flex;"><span>  ip router ospf UNDERLAY area 0.0.0.0
+</span></span><span style="display:flex;"><span>  ip pim sparse-mode
+</span></span><span style="display:flex;"><span>  no shutdown
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface Ethernet1/2
+</span></span><span style="display:flex;"><span>  description SPINE2
+</span></span><span style="display:flex;"><span>  mtu <span style="color:#a5d6ff">9216</span>
+</span></span><span style="display:flex;"><span>  medium p2p
+</span></span><span style="display:flex;"><span>  ip unnumbered loopback0
+</span></span><span style="display:flex;"><span>  ip router ospf UNDERLAY area 0.0.0.0
+</span></span><span style="display:flex;"><span>  ip pim sparse-mode
+</span></span><span style="display:flex;"><span>  no shutdown
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface Ethernet1/3
+</span></span><span style="display:flex;"><span>  description TENANT1-VLAN10-SERVER02
+</span></span><span style="display:flex;"><span>  switchport
+</span></span><span style="display:flex;"><span>  switchport access vlan <span style="color:#a5d6ff">10</span>
+</span></span><span style="display:flex;"><span>  no shutdown
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface Ethernet1/4
+</span></span><span style="display:flex;"><span>  description TENANT1-VLAN11-SERVER02
+</span></span><span style="display:flex;"><span>  switchport
+</span></span><span style="display:flex;"><span>  switchport access vlan <span style="color:#a5d6ff">11</span>
+</span></span><span style="display:flex;"><span>  no shutdown
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface Ethernet1/5
+</span></span><span style="display:flex;"><span>  description TENANT2-VLAN20-SERVER02
+</span></span><span style="display:flex;"><span>  switchport
+</span></span><span style="display:flex;"><span>  switchport access vlan <span style="color:#a5d6ff">20</span>
+</span></span><span style="display:flex;"><span>  no shutdown
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface mgmt0
+</span></span><span style="display:flex;"><span>  vrf member management
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface loopback0
+</span></span><span style="display:flex;"><span>  description LEAF2-LOOPBACK
+</span></span><span style="display:flex;"><span>  ip address 10.0.0.4/32
+</span></span><span style="display:flex;"><span>  ip router ospf UNDERLAY area 0.0.0.0
+</span></span><span style="display:flex;"><span>  ip pim sparse-mode
+</span></span><span style="display:flex;"><span>icam monitor scale
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>line console
+</span></span><span style="display:flex;"><span>line vty
+</span></span><span style="display:flex;"><span>boot nxos bootflash:/nxos64-cs.10.5.2.F.bin
+</span></span><span style="display:flex;"><span>router ospf UNDERLAY
+</span></span><span style="display:flex;"><span>  log-adjacency-changes
+</span></span><span style="display:flex;"><span>router bgp <span style="color:#a5d6ff">64500</span>
+</span></span><span style="display:flex;"><span>  log-neighbor-changes
+</span></span><span style="display:flex;"><span>  address-family ipv4 unicast
+</span></span><span style="display:flex;"><span>  address-family l2vpn evpn
+</span></span><span style="display:flex;"><span>  template peer SPINE
+</span></span><span style="display:flex;"><span>    remote-as <span style="color:#a5d6ff">64500</span>
+</span></span><span style="display:flex;"><span>    update-source loopback0
+</span></span><span style="display:flex;"><span>    address-family ipv4 unicast
+</span></span><span style="display:flex;"><span>      send-community extended
+</span></span><span style="display:flex;"><span>      soft-reconfiguration inbound
+</span></span><span style="display:flex;"><span>    address-family l2vpn evpn
+</span></span><span style="display:flex;"><span>      send-community
+</span></span><span style="display:flex;"><span>      send-community extended
+</span></span><span style="display:flex;"><span>  neighbor 10.0.0.1
+</span></span><span style="display:flex;"><span>    inherit peer SPINE
+</span></span><span style="display:flex;"><span>  neighbor 10.0.0.2
+</span></span><span style="display:flex;"><span>    inherit peer SPINE
+</span></span><span style="display:flex;"><span>  vrf OVERLAY-TENANT-1
+</span></span><span style="display:flex;"><span>    log-neighbor-changes
+</span></span><span style="display:flex;"><span>    address-family ipv4 unicast
+</span></span><span style="display:flex;"><span>      network 10.10.1.0/24
+</span></span><span style="display:flex;"><span>      network 10.11.1.0/24
+</span></span><span style="display:flex;"><span>  vrf OVERLAY-TENANT-2
+</span></span><span style="display:flex;"><span>    log-neighbor-changes
+</span></span><span style="display:flex;"><span>    address-family ipv4 unicast
+</span></span><span style="display:flex;"><span>      network 10.20.1.0/24
+</span></span><span style="display:flex;"><span>evpn
+</span></span><span style="display:flex;"><span>  vni <span style="color:#a5d6ff">100010</span> l2
+</span></span><span style="display:flex;"><span>    rd auto
+</span></span><span style="display:flex;"><span>    route-target import auto
+</span></span><span style="display:flex;"><span>    route-target export auto
+</span></span><span style="display:flex;"><span>  vni <span style="color:#a5d6ff">100011</span> l2
+</span></span><span style="display:flex;"><span>    rd auto
+</span></span><span style="display:flex;"><span>    route-target import auto
+</span></span><span style="display:flex;"><span>    route-target export auto
+</span></span><span style="display:flex;"><span>  vni <span style="color:#a5d6ff">100020</span> l2
+</span></span><span style="display:flex;"><span>    rd auto
+</span></span><span style="display:flex;"><span>    route-target import auto
+</span></span><span style="display:flex;"><span>    route-target export auto
+</span></span><span style="display:flex;"><span>cli alias name wr copy running-config startup-config
+</span></span></code></pre></div><h3 id="leaf3-configuration">
+  LEAF3 Configuration
+  <a class="heading-link" href="#leaf3-configuration">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hostname LEAF3
+</span></span><span style="display:flex;"><span>vdc LEAF3 id <span style="color:#a5d6ff">1</span>
+</span></span><span style="display:flex;"><span>  limit-resource vlan minimum <span style="color:#a5d6ff">16</span> maximum <span style="color:#a5d6ff">4094</span>
+</span></span><span style="display:flex;"><span>  limit-resource vrf minimum <span style="color:#a5d6ff">2</span> maximum <span style="color:#a5d6ff">4096</span>
+</span></span><span style="display:flex;"><span>  limit-resource port-channel minimum <span style="color:#a5d6ff">0</span> maximum <span style="color:#a5d6ff">511</span>
+</span></span><span style="display:flex;"><span>  limit-resource m4route-mem minimum <span style="color:#a5d6ff">58</span> maximum <span style="color:#a5d6ff">58</span>
+</span></span><span style="display:flex;"><span>  limit-resource m6route-mem minimum <span style="color:#a5d6ff">8</span> maximum <span style="color:#a5d6ff">8</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>nv overlay evpn
+</span></span><span style="display:flex;"><span>feature ospf
+</span></span><span style="display:flex;"><span>feature bgp
+</span></span><span style="display:flex;"><span>feature pim
+</span></span><span style="display:flex;"><span>feature fabric forwarding
+</span></span><span style="display:flex;"><span>feature interface-vlan
+</span></span><span style="display:flex;"><span>feature vn-segment-vlan-based
+</span></span><span style="display:flex;"><span>feature nv overlay
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>no password strength-check
+</span></span><span style="display:flex;"><span>username admin password <span style="color:#a5d6ff">5</span> <span style="color:#79c0ff">$5$ENGEOD$ozMfvIAsvrcVUnmFwZhrBB6OfumOwG3aaCe6RKpB6u5</span>
+</span></span><span style="display:flex;"><span> role network-admin
+</span></span><span style="display:flex;"><span>no ip domain-lookup
+</span></span><span style="display:flex;"><span>ip domain-name dc1.null0labs.net
+</span></span><span style="display:flex;"><span>copp profile strict
+</span></span><span style="display:flex;"><span>snmp-server user admin network-admin auth md5 365F7CC2DDC1215EC5A9D405754494B1B1
+</span></span><span style="display:flex;"><span>F7 priv aes-128 32097A88C099290695A086562044E98FE0BC localizedV2key
+</span></span><span style="display:flex;"><span>rmon event <span style="color:#a5d6ff">1</span> log trap public description FATAL<span style="color:#ff7b72;font-weight:bold">(</span>1<span style="color:#ff7b72;font-weight:bold">)</span> owner PMON@FATAL
+</span></span><span style="display:flex;"><span>rmon event <span style="color:#a5d6ff">2</span> log trap public description CRITICAL<span style="color:#ff7b72;font-weight:bold">(</span>2<span style="color:#ff7b72;font-weight:bold">)</span> owner PMON@CRITICAL
+</span></span><span style="display:flex;"><span>rmon event <span style="color:#a5d6ff">3</span> log trap public description ERROR<span style="color:#ff7b72;font-weight:bold">(</span>3<span style="color:#ff7b72;font-weight:bold">)</span> owner PMON@ERROR
+</span></span><span style="display:flex;"><span>rmon event <span style="color:#a5d6ff">4</span> log trap public description WARNING<span style="color:#ff7b72;font-weight:bold">(</span>4<span style="color:#ff7b72;font-weight:bold">)</span> owner PMON@WARNING
+</span></span><span style="display:flex;"><span>rmon event <span style="color:#a5d6ff">5</span> log trap public description INFORMATION<span style="color:#ff7b72;font-weight:bold">(</span>5<span style="color:#ff7b72;font-weight:bold">)</span> owner PMON@INFO
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>fabric forwarding anycast-gateway-mac 0000.1111.1111
+</span></span><span style="display:flex;"><span>ip pim rp-address 10.0.0.254 group-list 224.0.0.0/4
+</span></span><span style="display:flex;"><span>ip pim ssm range 232.0.0.0/8
+</span></span><span style="display:flex;"><span>vlan 1,10-11,20,1001,3965-3966
+</span></span><span style="display:flex;"><span>vlan <span style="color:#a5d6ff">10</span>
+</span></span><span style="display:flex;"><span>  vn-segment <span style="color:#a5d6ff">100010</span>
+</span></span><span style="display:flex;"><span>vlan <span style="color:#a5d6ff">11</span>
+</span></span><span style="display:flex;"><span>  vn-segment <span style="color:#a5d6ff">100011</span>
+</span></span><span style="display:flex;"><span>vlan <span style="color:#a5d6ff">20</span>
+</span></span><span style="display:flex;"><span>  vn-segment <span style="color:#a5d6ff">100020</span>
+</span></span><span style="display:flex;"><span>vlan <span style="color:#a5d6ff">1001</span>
+</span></span><span style="display:flex;"><span>  vn-segment <span style="color:#a5d6ff">101001</span>
+</span></span><span style="display:flex;"><span>vlan <span style="color:#a5d6ff">3965</span>
+</span></span><span style="display:flex;"><span>  vn-segment <span style="color:#a5d6ff">903965</span>
+</span></span><span style="display:flex;"><span>vlan <span style="color:#a5d6ff">3966</span>
+</span></span><span style="display:flex;"><span>  vn-segment <span style="color:#a5d6ff">903966</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vrf context OVERLAY-TENANT-1
+</span></span><span style="display:flex;"><span>  vni <span style="color:#a5d6ff">903966</span>
+</span></span><span style="display:flex;"><span>  rd auto
+</span></span><span style="display:flex;"><span>  address-family ipv4 unicast
+</span></span><span style="display:flex;"><span>    route-target both auto
+</span></span><span style="display:flex;"><span>    route-target both auto evpn
+</span></span><span style="display:flex;"><span>    route-target import 64500:101001
+</span></span><span style="display:flex;"><span>    route-target import 64500:903965
+</span></span><span style="display:flex;"><span>    route-target import 64500:903965 evpn
+</span></span><span style="display:flex;"><span>    import vrf advertise-vpn
+</span></span><span style="display:flex;"><span>vrf context OVERLAY-TENANT-2
+</span></span><span style="display:flex;"><span>  vni <span style="color:#a5d6ff">903965</span>
+</span></span><span style="display:flex;"><span>  rd auto
+</span></span><span style="display:flex;"><span>  address-family ipv4 unicast
+</span></span><span style="display:flex;"><span>    route-target both auto
+</span></span><span style="display:flex;"><span>    route-target both auto evpn
+</span></span><span style="display:flex;"><span>    route-target import 64500:101001
+</span></span><span style="display:flex;"><span>    route-target import 64500:903966
+</span></span><span style="display:flex;"><span>    route-target import 64500:903966 evpn
+</span></span><span style="display:flex;"><span>    import vrf advertise-vpn
+</span></span><span style="display:flex;"><span>vrf context external
+</span></span><span style="display:flex;"><span>  vni <span style="color:#a5d6ff">101001</span>
+</span></span><span style="display:flex;"><span>  rd auto
+</span></span><span style="display:flex;"><span>  address-family ipv4 unicast
+</span></span><span style="display:flex;"><span>    route-target both auto
+</span></span><span style="display:flex;"><span>    route-target both auto evpn
+</span></span><span style="display:flex;"><span>    route-target import 64500:903965
+</span></span><span style="display:flex;"><span>    route-target import 64500:903965 evpn
+</span></span><span style="display:flex;"><span>    route-target import 64500:903966
+</span></span><span style="display:flex;"><span>    route-target import 64500:903966 evpn
+</span></span><span style="display:flex;"><span>vrf context management
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface Vlan1
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface Vlan10
+</span></span><span style="display:flex;"><span>  no shutdown
+</span></span><span style="display:flex;"><span>  vrf member OVERLAY-TENANT-1
+</span></span><span style="display:flex;"><span>  ip address 10.10.1.254/24
+</span></span><span style="display:flex;"><span>  fabric forwarding mode anycast-gateway
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface Vlan11
+</span></span><span style="display:flex;"><span>  no shutdown
+</span></span><span style="display:flex;"><span>  vrf member OVERLAY-TENANT-1
+</span></span><span style="display:flex;"><span>  ip address 10.11.1.254/24
+</span></span><span style="display:flex;"><span>  fabric forwarding mode anycast-gateway
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface Vlan20
+</span></span><span style="display:flex;"><span>  no shutdown
+</span></span><span style="display:flex;"><span>  vrf member OVERLAY-TENANT-2
+</span></span><span style="display:flex;"><span>  ip address 10.20.1.254/24
+</span></span><span style="display:flex;"><span>  fabric forwarding mode anycast-gateway
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface Vlan1001
+</span></span><span style="display:flex;"><span>  no shutdown
+</span></span><span style="display:flex;"><span>  vrf member external
+</span></span><span style="display:flex;"><span>  ip forward
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface Vlan3965
+</span></span><span style="display:flex;"><span>  no shutdown
+</span></span><span style="display:flex;"><span>  vrf member OVERLAY-TENANT-2
+</span></span><span style="display:flex;"><span>  ip forward
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface Vlan3966
+</span></span><span style="display:flex;"><span>  no shutdown
+</span></span><span style="display:flex;"><span>  vrf member OVERLAY-TENANT-1
+</span></span><span style="display:flex;"><span>  ip forward
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface nve1
+</span></span><span style="display:flex;"><span>  no shutdown
+</span></span><span style="display:flex;"><span>  description NVE1
+</span></span><span style="display:flex;"><span>  host-reachability protocol bgp
+</span></span><span style="display:flex;"><span>  source-interface loopback0
+</span></span><span style="display:flex;"><span>  member vni <span style="color:#a5d6ff">100010</span>
+</span></span><span style="display:flex;"><span>    mcast-group 224.1.1.10
+</span></span><span style="display:flex;"><span>  member vni <span style="color:#a5d6ff">100011</span>
+</span></span><span style="display:flex;"><span>    mcast-group 224.1.1.11
+</span></span><span style="display:flex;"><span>  member vni <span style="color:#a5d6ff">100020</span>
+</span></span><span style="display:flex;"><span>    mcast-group 224.1.1.20
+</span></span><span style="display:flex;"><span>  member vni <span style="color:#a5d6ff">101001</span> associate-vrf
+</span></span><span style="display:flex;"><span>  member vni <span style="color:#a5d6ff">903965</span> associate-vrf
+</span></span><span style="display:flex;"><span>  member vni <span style="color:#a5d6ff">903966</span> associate-vrf
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface Ethernet1/1
+</span></span><span style="display:flex;"><span>  description SPINE1
+</span></span><span style="display:flex;"><span>  mtu <span style="color:#a5d6ff">9216</span>
+</span></span><span style="display:flex;"><span>  medium p2p
+</span></span><span style="display:flex;"><span>  ip unnumbered loopback0
+</span></span><span style="display:flex;"><span>  ip router ospf UNDERLAY area 0.0.0.0
+</span></span><span style="display:flex;"><span>  ip pim sparse-mode
+</span></span><span style="display:flex;"><span>  no shutdown
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface Ethernet1/2
+</span></span><span style="display:flex;"><span>  description SPINE2
+</span></span><span style="display:flex;"><span>  mtu <span style="color:#a5d6ff">9216</span>
+</span></span><span style="display:flex;"><span>  medium p2p
+</span></span><span style="display:flex;"><span>  ip unnumbered loopback0
+</span></span><span style="display:flex;"><span>  ip router ospf UNDERLAY area 0.0.0.0
+</span></span><span style="display:flex;"><span>  ip pim sparse-mode
+</span></span><span style="display:flex;"><span>  no shutdown
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface Ethernet1/3
+</span></span><span style="display:flex;"><span>  description TENANT1-VLAN10-SERVER03
+</span></span><span style="display:flex;"><span>  switchport
+</span></span><span style="display:flex;"><span>  switchport access vlan <span style="color:#a5d6ff">10</span>
+</span></span><span style="display:flex;"><span>  no shutdown
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface Ethernet1/4
+</span></span><span style="display:flex;"><span>  description TENANT1-VLAN11-SERVER03
+</span></span><span style="display:flex;"><span>  switchport
+</span></span><span style="display:flex;"><span>  switchport access vlan <span style="color:#a5d6ff">11</span>
+</span></span><span style="display:flex;"><span>  no shutdown
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface Ethernet1/5
+</span></span><span style="display:flex;"><span>  description TENANT2-VLAN20-SERVER03
+</span></span><span style="display:flex;"><span>  switchport
+</span></span><span style="display:flex;"><span>  switchport access vlan <span style="color:#a5d6ff">20</span>
+</span></span><span style="display:flex;"><span>  no shutdown
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface Ethernet1/6
+</span></span><span style="display:flex;"><span>  description UPSTREAM-GW
+</span></span><span style="display:flex;"><span>  vrf member external
+</span></span><span style="display:flex;"><span>  ip address 10.100.0.2/30
+</span></span><span style="display:flex;"><span>  no shutdown
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface mgmt0
+</span></span><span style="display:flex;"><span>  vrf member management
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>interface loopback0
+</span></span><span style="display:flex;"><span>  description LEAF3-LOOPBACK
+</span></span><span style="display:flex;"><span>  ip address 10.0.0.5/32
+</span></span><span style="display:flex;"><span>  ip router ospf UNDERLAY area 0.0.0.0
+</span></span><span style="display:flex;"><span>  ip pim sparse-mode
+</span></span><span style="display:flex;"><span>icam monitor scale
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cli alias name wr copy running-config startup-config
+</span></span><span style="display:flex;"><span>line console
+</span></span><span style="display:flex;"><span>line vty
+</span></span><span style="display:flex;"><span>boot nxos bootflash:/nxos64-cs.10.5.2.F.bin
+</span></span><span style="display:flex;"><span>router ospf UNDERLAY
+</span></span><span style="display:flex;"><span>  log-adjacency-changes
+</span></span><span style="display:flex;"><span>router bgp <span style="color:#a5d6ff">64500</span>
+</span></span><span style="display:flex;"><span>  log-neighbor-changes
+</span></span><span style="display:flex;"><span>  address-family ipv4 unicast
+</span></span><span style="display:flex;"><span>  address-family l2vpn evpn
+</span></span><span style="display:flex;"><span>  template peer SPINE
+</span></span><span style="display:flex;"><span>    remote-as <span style="color:#a5d6ff">64500</span>
+</span></span><span style="display:flex;"><span>    update-source loopback0
+</span></span><span style="display:flex;"><span>    address-family ipv4 unicast
+</span></span><span style="display:flex;"><span>      send-community extended
+</span></span><span style="display:flex;"><span>      soft-reconfiguration inbound
+</span></span><span style="display:flex;"><span>    address-family l2vpn evpn
+</span></span><span style="display:flex;"><span>      send-community
+</span></span><span style="display:flex;"><span>      send-community extended
+</span></span><span style="display:flex;"><span>  neighbor 10.0.0.1
+</span></span><span style="display:flex;"><span>    inherit peer SPINE
+</span></span><span style="display:flex;"><span>  neighbor 10.0.0.2
+</span></span><span style="display:flex;"><span>    inherit peer SPINE
+</span></span><span style="display:flex;"><span>  vrf OVERLAY-TENANT-1
+</span></span><span style="display:flex;"><span>    log-neighbor-changes
+</span></span><span style="display:flex;"><span>    address-family ipv4 unicast
+</span></span><span style="display:flex;"><span>      network 10.10.1.0/24
+</span></span><span style="display:flex;"><span>      network 10.11.1.0/24
+</span></span><span style="display:flex;"><span>  vrf OVERLAY-TENANT-2
+</span></span><span style="display:flex;"><span>    log-neighbor-changes
+</span></span><span style="display:flex;"><span>    address-family ipv4 unicast
+</span></span><span style="display:flex;"><span>      network 10.20.1.0/24
+</span></span><span style="display:flex;"><span>  vrf external
+</span></span><span style="display:flex;"><span>    address-family ipv4 unicast
+</span></span><span style="display:flex;"><span>      aggregate-address 10.10.1.0/24 summary-only
+</span></span><span style="display:flex;"><span>      aggregate-address 10.11.1.0/24 summary-only
+</span></span><span style="display:flex;"><span>      aggregate-address 10.20.1.0/24 summary-only
+</span></span><span style="display:flex;"><span>    neighbor 10.100.0.1
+</span></span><span style="display:flex;"><span>      remote-as <span style="color:#a5d6ff">64501</span>
+</span></span><span style="display:flex;"><span>      address-family ipv4 unicast
+</span></span><span style="display:flex;"><span>evpn
+</span></span><span style="display:flex;"><span>  vni <span style="color:#a5d6ff">100010</span> l2
+</span></span><span style="display:flex;"><span>    rd auto
+</span></span><span style="display:flex;"><span>    route-target import auto
+</span></span><span style="display:flex;"><span>    route-target export auto
+</span></span><span style="display:flex;"><span>  vni <span style="color:#a5d6ff">100011</span> l2
+</span></span><span style="display:flex;"><span>    rd auto
+</span></span><span style="display:flex;"><span>    route-target import auto
+</span></span><span style="display:flex;"><span>    route-target export auto
+</span></span><span style="display:flex;"><span>  vni <span style="color:#a5d6ff">100020</span> l2
+</span></span><span style="display:flex;"><span>    rd auto
+</span></span><span style="display:flex;"><span>    route-target import auto
+</span></span><span style="display:flex;"><span>    route-target export auto
+</span></span></code></pre></div><h2 id="tenant-connectivity-tests">
+  Tenant Connectivity Tests
+  <a class="heading-link" href="#tenant-connectivity-tests">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<h2 id="tenant-1">
+  Tenant 1
+  <a class="heading-link" href="#tenant-1">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<h3 id="ping-vlan-10-host-to-vlan-11-host-and-traces">
+  Ping VLAN 10 host to VLAN 11 host and Traces
+  <a class="heading-link" href="#ping-vlan-10-host-to-vlan-11-host-and-traces">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p><img src="vlan10tovlan11.png" alt="Ping Tenant 1 V10 ↔ V11"></p>
+<h2 id="tenant">
+  Tenant
+  <a class="heading-link" href="#tenant">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<h3 id="ping-within-vlan-20-and-to-external-and-vlan-10">
+  Ping within VLAN 20 and to External and VLAN 10
+  <a class="heading-link" href="#ping-within-vlan-20-and-to-external-and-vlan-10">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p><img src="vlan20tovlan10andinternet.png" alt="Ping Tenant 2"></p>
+<h2 id="wrapping-up">
+  Wrapping Up
+  <a class="heading-link" href="#wrapping-up">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>This lab demonstrates VXLAN EVPN overlays in a leaf-spine fabric.</p>
+
+  </article>
+</section>
+
+  
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+      2025 -
+    
+    2026
+     Null0 Labs 
+    ·
+    
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>

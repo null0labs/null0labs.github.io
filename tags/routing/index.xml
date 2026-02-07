@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Routing on Null0 Labs</title>
+    <link>https://null0labs.com/tags/routing/</link>
+    <description>Recent content in Routing on Null0 Labs</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 27 Jul 2025 00:40:04 -0700</lastBuildDate>
+    <atom:link href="https://null0labs.com/tags/routing/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VXLAN EVPN Spine and Leaf</title>
+      <link>https://null0labs.com/blog/vxlan-evpn-leaf-and-spine/</link>
+      <pubDate>Sun, 27 Jul 2025 00:40:04 -0700</pubDate>
+      <guid>https://null0labs.com/blog/vxlan-evpn-leaf-and-spine/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;&#xA;  Introduction&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#introduction&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;The VXLAN EVPN Leaf and Spine architecture has become the backbone of scalable, multi-tenant network design. This blog post showcases a lab simulation built around this topology, highlighting configuration examples, verification tests, and insights into why this design is foundational for modern data centers.&lt;/p&gt;&#xA;&lt;p&gt;We&amp;rsquo;ll explore:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Why leaf and spine is ideal for multi-tenant overlays&lt;/li&gt;&#xA;&lt;li&gt;Configuration snippets from the lab topology&lt;/li&gt;&#xA;&lt;li&gt;Ping and trace outputs between tenant workloads&lt;/li&gt;&#xA;&lt;li&gt;Mnemonic VNI/VLAN/VRF schemes that reinforce automation and clarity&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;&lt;img src=&#34;feature.jpeg&#34; alt=&#34;Network&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Routing with VRF-Lite</title>
+      <link>https://null0labs.com/blog/vrf-lite-routing/</link>
+      <pubDate>Sun, 13 Jul 2025 00:40:04 -0700</pubDate>
+      <guid>https://null0labs.com/blog/vrf-lite-routing/</guid>
+      <description>&lt;p&gt;In a world where multi-tenancy is standard and overlapping IP addressing is a common reality, Virtual Routing and Forwarding Lite (VRF-Lite) emerges as a clean and powerful solution. Whether you&amp;rsquo;re an enterprise splitting departments or a service provider managing distinct customers, VRF-Lite can streamline your architecture—without extra hardware overhead.&lt;/p&gt;&#xA;&lt;h1 id=&#34;&#34;&gt;&#xA;  &#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;p&gt;Today, I’m showcasing a lab I designed that demonstrates how VRF-Lite achieves traffic isolation and address overlap in a Tiered ISP environment. This topology simulates two different customers using the same IP space, and yet, thanks to VRF-Lite, they remain entirely segregated.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

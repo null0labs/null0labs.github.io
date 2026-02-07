@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>
+  XConnect over L2TPv3 &#43; IPSec · Null0 Labs
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="Null0 Labs">
+<meta name="description" content="In a previous post, I looked at using L2TP tunnels to support wholesale broadband environments using PPPoE and dynamic RADIUS-based handoff. This time let’s pivot to a slightly different but powerful application: extending Layer 2 connectivity across routed infrastructure using XConnect over L2TPv3 secured with IPSec.
+
+  Why XConnect &#43; L2TPv3?
+  
+    
+    Link to heading
+  
+
+XConnect, also known as pseudowire, enables us to extend an Ethernet segment (or even full 802.1Q trunk) transparently across an IP network. Combined with L2TPv3, which encapsulates Layer 2 frames in IP, and IPSec for encryption, we get:">
+<meta name="keywords" content="youtube,networks,cisco,retro,juniper,palo,hp,asa,ipsec,loopbacks,null0,null0labs">
+
+
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://null0labs.com/blog/xconnect-over-l2tpv3-ipsec/feature.jpeg">
+  <meta name="twitter:title" content="XConnect over L2TPv3 &#43; IPSec">
+  <meta name="twitter:description" content="In a previous post, I looked at using L2TP tunnels to support wholesale broadband environments using PPPoE and dynamic RADIUS-based handoff. This time let’s pivot to a slightly different but powerful application: extending Layer 2 connectivity across routed infrastructure using XConnect over L2TPv3 secured with IPSec.
+Why XConnect &#43; L2TPv3? Link to heading XConnect, also known as pseudowire, enables us to extend an Ethernet segment (or even full 802.1Q trunk) transparently across an IP network. Combined with L2TPv3, which encapsulates Layer 2 frames in IP, and IPSec for encryption, we get:">
+
+<meta property="og:url" content="https://null0labs.com/blog/xconnect-over-l2tpv3-ipsec/">
+  <meta property="og:site_name" content="Null0 Labs">
+  <meta property="og:title" content="XConnect over L2TPv3 &#43; IPSec">
+  <meta property="og:description" content="In a previous post, I looked at using L2TP tunnels to support wholesale broadband environments using PPPoE and dynamic RADIUS-based handoff. This time let’s pivot to a slightly different but powerful application: extending Layer 2 connectivity across routed infrastructure using XConnect over L2TPv3 secured with IPSec.
+Why XConnect &#43; L2TPv3? Link to heading XConnect, also known as pseudowire, enables us to extend an Ethernet segment (or even full 802.1Q trunk) transparently across an IP network. Combined with L2TPv3, which encapsulates Layer 2 frames in IP, and IPSec for encryption, we get:">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2025-07-07T00:40:04-07:00">
+    <meta property="article:modified_time" content="2025-07-07T00:40:04-07:00">
+    <meta property="article:tag" content="L2TP">
+    <meta property="article:tag" content="Xconnect">
+    <meta property="article:tag" content="Blog">
+    <meta property="og:image" content="https://null0labs.com/blog/xconnect-over-l2tpv3-ipsec/feature.jpeg">
+
+
+
+
+<link rel="canonical" href="https://null0labs.com/blog/xconnect-over-l2tpv3-ipsec/">
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.min.4b392a85107b91dbdabc528edf014a6ab1a30cd44cafcd5325c8efe796794fca.css" integrity="sha256-SzkqhRB7kdvavFKO3wFKarGjDNRMr81TJcjv55Z5T8o=" crossorigin="anonymous" media="screen" />
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css" integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin="anonymous" media="screen" />
+  
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/img/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-dark">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    <a class="navigation-title" href="https://null0labs.com/">
+      Null0 Labs
+    </a>
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/">Home</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/blog/">Blog</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/about/">About</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container page">
+  <article>
+    <header>
+      <h1 class="title">
+        <a class="title-link" href="https://null0labs.com/blog/xconnect-over-l2tpv3-ipsec/">
+          XConnect over L2TPv3 &#43; IPSec
+        </a>
+      </h1>
+    </header>
+
+    <p>In a previous post, I looked at using L2TP tunnels to support wholesale broadband environments using PPPoE and dynamic RADIUS-based handoff. This time let’s pivot to a slightly different but powerful application: extending Layer 2 connectivity across routed infrastructure using XConnect over L2TPv3 secured with IPSec.</p>
+<h2 id="why-xconnect--l2tpv3">
+  Why XConnect + L2TPv3?
+  <a class="heading-link" href="#why-xconnect--l2tpv3">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>XConnect, also known as pseudowire, enables us to extend an Ethernet segment (or even full 802.1Q trunk) transparently across an IP network. Combined with L2TPv3, which encapsulates Layer 2 frames in IP, and IPSec for encryption, we get:</p>
+<ul>
+<li>End-to-end encrypted Layer 2 connectivity</li>
+<li>Routing domain independence — works over any IP routed core</li>
+<li>Realistic lab environments — simulate MPLS/VPLS behaviour</li>
+<li>Use-case versatility — cross-site VLAN bridging, heartbeat links etc</li>
+</ul>
+<p><img src="topology1.png" alt="alt"></p>
+<!-- raw HTML omitted -->
+<h2 id="why-ipsec-">
+  Why IPsec ?
+  <a class="heading-link" href="#why-ipsec-">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Using IPSec allows the traffic to be secured before transmitting it over a public routed infrastucture. Here is a capture of traffic heading to the gateway we can see all the data. and after encapsulation we only see traffic between the tunnel endpoints and its encrypted.</p>
+<p><img src="capture1.png" alt="alt"></p>
+<!-- raw HTML omitted -->
+<p><img src="capture2.png" alt="alt"></p>
+<!-- raw HTML omitted -->
+<h2 id="adding-a-secondary-tunnel-for-redundancy">
+  Adding a Secondary Tunnel for Redundancy
+  <a class="heading-link" href="#adding-a-secondary-tunnel-for-redundancy">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>To improve resilience, we add a second tunnel path to build a redundant XConnect with failover. This protects the connection from WAN or router failure on either side.</p>
+<ul>
+<li>Tunnel 1 to Site 1 via ISP 1</li>
+<li>Tunnel 2 to Site 2 via ISP 2</li>
+<li>Monitor the tunnels using SLA and routing metrics to failover the tunnel path</li>
+</ul>
+<p>Full configurations are listed below showing the SLA monitor used and the static route metric adjustments to handle failover with IPSec.</p>
+<p><img src="topology2.png" alt="alt"></p>
+<!-- raw HTML omitted -->
+<p>Below is a before and after of the routing table of Site1 you see the path for the Xconnect is via tunnel 1 but when the SLA monitor sees the link fail the route is changed to use tunnel 2 and the xconnect stays up and passing traffic.</p>
+<p>Below you see the xconnect endpoint 10.10.10.2 is reachable via tunnel 1</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>SITE-1#show ip route
+</span></span><span style="display:flex;"><span>Gateway of last resort is not set
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>10.0.0.0/32 is subnetted, <span style="color:#a5d6ff">2</span> subnets
+</span></span><span style="display:flex;"><span>C        10.10.10.1 is directly connected, Loopback100
+</span></span><span style="display:flex;"><span>S        10.10.10.2 is directly connected, Tunnel1
+</span></span><span style="display:flex;"><span>      192.0.2.0/24 is variably subnetted, <span style="color:#a5d6ff">3</span> subnets, <span style="color:#a5d6ff">2</span> masks
+</span></span><span style="display:flex;"><span>C        192.0.2.0/30 is directly connected, GigabitEthernet1
+</span></span><span style="display:flex;"><span>L        192.0.2.2/32 is directly connected, GigabitEthernet1
+</span></span><span style="display:flex;"><span>S        192.0.2.6/32 <span style="color:#ff7b72;font-weight:bold">[</span>1/0<span style="color:#ff7b72;font-weight:bold">]</span> via 192.0.2.1
+</span></span><span style="display:flex;"><span>      198.51.100.0/32 is subnetted, <span style="color:#a5d6ff">1</span> subnets
+</span></span><span style="display:flex;"><span>S        198.51.100.2 <span style="color:#ff7b72;font-weight:bold">[</span>1/0<span style="color:#ff7b72;font-weight:bold">]</span> via 201.0.113.1
+</span></span><span style="display:flex;"><span>      201.0.113.0/24 is variably subnetted, <span style="color:#a5d6ff">2</span> subnets, <span style="color:#a5d6ff">2</span> masks
+</span></span><span style="display:flex;"><span>C        201.0.113.0/30 is directly connected, GigabitEthernet2
+</span></span><span style="display:flex;"><span>L        201.0.113.2/32 is directly connected, GigabitEthernet2
+</span></span></code></pre></div><p>When the link to ISP 1 is broken</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>%TRACK-6-STATE: <span style="color:#a5d6ff">1</span> ip sla <span style="color:#a5d6ff">1</span> reachability Up -&gt; Down 
+</span></span></code></pre></div><p>Now the endpoint is still reachable but via Tunnel 2 automatically</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>SITE-1#show ip route
+</span></span><span style="display:flex;"><span>Gateway of last resort is not set
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      10.0.0.0/32 is subnetted, <span style="color:#a5d6ff">2</span> subnets
+</span></span><span style="display:flex;"><span>C        10.10.10.1 is directly connected, Loopback100
+</span></span><span style="display:flex;"><span>S        10.10.10.2 is directly connected, Tunnel2
+</span></span><span style="display:flex;"><span>      192.0.2.0/24 is variably subnetted, <span style="color:#a5d6ff">3</span> subnets, <span style="color:#a5d6ff">2</span> masks
+</span></span><span style="display:flex;"><span>C        192.0.2.0/30 is directly connected, GigabitEthernet1
+</span></span><span style="display:flex;"><span>L        192.0.2.2/32 is directly connected, GigabitEthernet1
+</span></span><span style="display:flex;"><span>S        192.0.2.6/32 <span style="color:#ff7b72;font-weight:bold">[</span>1/0<span style="color:#ff7b72;font-weight:bold">]</span> via 192.0.2.1
+</span></span><span style="display:flex;"><span>      198.51.100.0/32 is subnetted, <span style="color:#a5d6ff">1</span> subnets
+</span></span><span style="display:flex;"><span>S        198.51.100.2 <span style="color:#ff7b72;font-weight:bold">[</span>1/0<span style="color:#ff7b72;font-weight:bold">]</span> via 201.0.113.1
+</span></span><span style="display:flex;"><span>      201.0.113.0/24 is variably subnetted, <span style="color:#a5d6ff">2</span> subnets, <span style="color:#a5d6ff">2</span> masks
+</span></span><span style="display:flex;"><span>C        201.0.113.0/30 is directly connected, GigabitEthernet2
+</span></span><span style="display:flex;"><span>L        201.0.113.2/32 is directly connected, GigabitEthernet2
+</span></span></code></pre></div><h2 id="testing-layer-2-connectivity--vlan-trunking">
+  Testing Layer 2 Connectivity &amp; VLAN Trunking
+  <a class="heading-link" href="#testing-layer-2-connectivity--vlan-trunking">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>With the XConnect up, traffic from Server 1 in VLAN 100 can reach Server 2 on the far side, across what appears to be a direct Ethernet trunk — even though it’s transiting a routed, encrypted WAN core like MAGIC.</p>
+<p>Below we can see server1 and server2 in VLAN 100 have reachability and only 1 hop away</p>
+<p><img src="pingtrace.png" alt="alt"></p>
+<!-- raw HTML omitted -->
+<p>The local switch Site1 has a trunk contigured on g1/0/1 and only VLAN 100,200,300 allowed</p>
+<p>The ports connected to the servers are in the corospoding VLAN but as access ports</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ASW-4-S1#show interfaces trunk
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Port           Mode             Encapsulation  Status        Native vlan
+</span></span><span style="display:flex;"><span>Gi1/0/1        on               802.1q         trunking      <span style="color:#a5d6ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Port           Vlans allowed on trunk
+</span></span><span style="display:flex;"><span>Gi1/0/1        100,200,300 
+</span></span></code></pre></div><p>A Capture from Site 2 switch shows the traffic from Server 1 reaching server 2 and the correct VLAN 100 is visible</p>
+<p><img src="capture3.png" alt="alt"></p>
+<!-- raw HTML omitted -->
+<p>This confirms that:</p>
+<ul>
+<li>Layer 2 continuity is intact</li>
+<li>VLAN tags are preserved</li>
+<li>No routing/NAT/firewall interference exists</li>
+</ul>
+<h2 id="device-configuration">
+  Device Configuration
+  <a class="heading-link" href="#device-configuration">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Here are the complete configurations from site 1. Note site 2 has a similar configuration with IP address and endpoint changes. feel free use in your own labs and experiment with failover.</p>
+<p>Site 1 C8000v Config (Condensed):</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hostname SITE-1
+</span></span><span style="display:flex;"><span>!
+</span></span><span style="display:flex;"><span>!
+</span></span><span style="display:flex;"><span>l2tp-class xconnect-l2tp
+</span></span><span style="display:flex;"><span> authentication
+</span></span><span style="display:flex;"><span> password securePassword
+</span></span><span style="display:flex;"><span>!
+</span></span><span style="display:flex;"><span>!
+</span></span><span style="display:flex;"><span>!
+</span></span><span style="display:flex;"><span>!
+</span></span><span style="display:flex;"><span>track <span style="color:#a5d6ff">1</span> ip sla <span style="color:#a5d6ff">1</span> reachability
+</span></span><span style="display:flex;"><span>pseudowire-class xconnect-pw
+</span></span><span style="display:flex;"><span> encapsulation l2tpv3
+</span></span><span style="display:flex;"><span> protocol l2tpv3 xconnect-l2tp
+</span></span><span style="display:flex;"><span> status control-plane route-watch
+</span></span><span style="display:flex;"><span> ip local interface Loopback100
+</span></span><span style="display:flex;"><span> ip pmtu
+</span></span><span style="display:flex;"><span>!
+</span></span><span style="display:flex;"><span>!
+</span></span><span style="display:flex;"><span>!
+</span></span><span style="display:flex;"><span>!
+</span></span><span style="display:flex;"><span>!
+</span></span><span style="display:flex;"><span>!
+</span></span><span style="display:flex;"><span>!
+</span></span><span style="display:flex;"><span>!
+</span></span><span style="display:flex;"><span>!
+</span></span><span style="display:flex;"><span>crypto isakmp policy <span style="color:#a5d6ff">10</span>
+</span></span><span style="display:flex;"><span> encryption aes <span style="color:#a5d6ff">256</span>
+</span></span><span style="display:flex;"><span> hash sha512
+</span></span><span style="display:flex;"><span> authentication pre-share
+</span></span><span style="display:flex;"><span> group <span style="color:#a5d6ff">14</span>
+</span></span><span style="display:flex;"><span>crypto isakmp key SecretPhrase address 192.0.2.6
+</span></span><span style="display:flex;"><span>crypto isakmp key SecretPhrase2 address 198.51.100.2
+</span></span><span style="display:flex;"><span>!
+</span></span><span style="display:flex;"><span>!
+</span></span><span style="display:flex;"><span>crypto ipsec transform-set TSVTI esp-aes <span style="color:#a5d6ff">256</span>
+</span></span><span style="display:flex;"><span> mode transport
+</span></span><span style="display:flex;"><span>!
+</span></span><span style="display:flex;"><span>crypto ipsec profile VTI
+</span></span><span style="display:flex;"><span> set transform-set TSVTI
+</span></span><span style="display:flex;"><span>!
+</span></span><span style="display:flex;"><span>!
+</span></span><span style="display:flex;"><span>!
+</span></span><span style="display:flex;"><span>!
+</span></span><span style="display:flex;"><span>!
+</span></span><span style="display:flex;"><span>!
+</span></span><span style="display:flex;"><span>interface Loopback100
+</span></span><span style="display:flex;"><span> description Xconnect Endpoint
+</span></span><span style="display:flex;"><span> ip address 10.10.10.1 255.255.255.255
+</span></span><span style="display:flex;"><span>!
+</span></span><span style="display:flex;"><span>interface Tunnel1
+</span></span><span style="display:flex;"><span> description Encrypted Primary Tunnel to Site2
+</span></span><span style="display:flex;"><span> ip unnumbered GigabitEthernet1
+</span></span><span style="display:flex;"><span> ip mtu <span style="color:#a5d6ff">1400</span>
+</span></span><span style="display:flex;"><span> tunnel source 192.0.2.2
+</span></span><span style="display:flex;"><span> tunnel mode ipsec ipv4
+</span></span><span style="display:flex;"><span> tunnel destination 192.0.2.6
+</span></span><span style="display:flex;"><span> tunnel protection ipsec profile VTI
+</span></span><span style="display:flex;"><span>!
+</span></span><span style="display:flex;"><span>interface Tunnel2
+</span></span><span style="display:flex;"><span> description Encrypted Backup Tunnel to Site2
+</span></span><span style="display:flex;"><span> ip unnumbered GigabitEthernet2
+</span></span><span style="display:flex;"><span> ip mtu <span style="color:#a5d6ff">1400</span>
+</span></span><span style="display:flex;"><span> tunnel source 201.0.113.2
+</span></span><span style="display:flex;"><span> tunnel mode ipsec ipv4
+</span></span><span style="display:flex;"><span> tunnel destination 198.51.100.2
+</span></span><span style="display:flex;"><span> tunnel protection ipsec profile VTI
+</span></span><span style="display:flex;"><span>!
+</span></span><span style="display:flex;"><span>interface GigabitEthernet1
+</span></span><span style="display:flex;"><span> description ISP1 Prmary Connection
+</span></span><span style="display:flex;"><span> ip address 192.0.2.2 255.255.255.252
+</span></span><span style="display:flex;"><span> negotiation auto
+</span></span><span style="display:flex;"><span>!
+</span></span><span style="display:flex;"><span>interface GigabitEthernet2
+</span></span><span style="display:flex;"><span> description ISP2 Backup Connection
+</span></span><span style="display:flex;"><span> ip address 201.0.113.2 255.255.255.252
+</span></span><span style="display:flex;"><span> negotiation auto
+</span></span><span style="display:flex;"><span>!
+</span></span><span style="display:flex;"><span>!
+</span></span><span style="display:flex;"><span>interface GigabitEthernet4
+</span></span><span style="display:flex;"><span> description Xconnect Interface
+</span></span><span style="display:flex;"><span> no ip address
+</span></span><span style="display:flex;"><span> negotiation auto
+</span></span><span style="display:flex;"><span> no keepalive
+</span></span><span style="display:flex;"><span> xconnect 10.10.10.2 <span style="color:#a5d6ff">100</span> encapsulation l2tpv3 pw-class xconnect-pw
+</span></span><span style="display:flex;"><span>!
+</span></span><span style="display:flex;"><span>!
+</span></span><span style="display:flex;"><span>!
+</span></span><span style="display:flex;"><span>ip route 10.10.10.2 255.255.255.255 Tunnel1 name XCONN-PRI track <span style="color:#a5d6ff">1</span>
+</span></span><span style="display:flex;"><span>ip route 10.10.10.2 255.255.255.255 Tunnel2 <span style="color:#a5d6ff">200</span> name XCONN-SEC
+</span></span><span style="display:flex;"><span>ip route 192.0.2.6 255.255.255.255 192.0.2.1 name SITE2-PRI-TEP
+</span></span><span style="display:flex;"><span>ip route 198.51.100.2 255.255.255.255 201.0.113.1 name SITE2-SEC-TEP
+</span></span><span style="display:flex;"><span>!
+</span></span><span style="display:flex;"><span>!
+</span></span><span style="display:flex;"><span>ip sla <span style="color:#a5d6ff">1</span>
+</span></span><span style="display:flex;"><span> icmp-echo 192.0.2.6 source-interface GigabitEthernet1
+</span></span><span style="display:flex;"><span>  frequency <span style="color:#a5d6ff">5</span>
+</span></span><span style="display:flex;"><span>ip sla schedule <span style="color:#a5d6ff">1</span> life forever start-time now
+</span></span><span style="display:flex;"><span>!
+</span></span><span style="display:flex;"><span>!
+</span></span><span style="display:flex;"><span>end
+</span></span></code></pre></div><p>Site 1 C9000v Switch (Condensed):</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hostname ASW-4-S1
+</span></span><span style="display:flex;"><span>!
+</span></span><span style="display:flex;"><span>interface GigabitEthernet1/0/1
+</span></span><span style="display:flex;"><span> description UPLINK_XCONNECT_TO_GW
+</span></span><span style="display:flex;"><span> switchport trunk allowed vlan 100,200,300
+</span></span><span style="display:flex;"><span> switchport mode trunk
+</span></span><span style="display:flex;"><span> no cdp enable
+</span></span><span style="display:flex;"><span>!
+</span></span><span style="display:flex;"><span>interface GigabitEthernet1/0/2
+</span></span><span style="display:flex;"><span> description SRV1-VLAN100
+</span></span><span style="display:flex;"><span> switchport access vlan <span style="color:#a5d6ff">100</span>
+</span></span><span style="display:flex;"><span> switchport mode access
+</span></span><span style="display:flex;"><span>!
+</span></span><span style="display:flex;"><span>interface GigabitEthernet1/0/3
+</span></span><span style="display:flex;"><span> description SRV1-VLAN200
+</span></span><span style="display:flex;"><span> switchport access vlan <span style="color:#a5d6ff">200</span>
+</span></span><span style="display:flex;"><span> switchport mode access
+</span></span><span style="display:flex;"><span>!
+</span></span><span style="display:flex;"><span>interface GigabitEthernet1/0/4
+</span></span><span style="display:flex;"><span> description SRV1-VLAN300
+</span></span><span style="display:flex;"><span> switchport access vlan <span style="color:#a5d6ff">300</span>
+</span></span><span style="display:flex;"><span> switchport mode access
+</span></span><span style="display:flex;"><span>!
+</span></span><span style="display:flex;"><span>!
+</span></span><span style="display:flex;"><span>end
+</span></span></code></pre></div><h2 id="why-this-matters">
+  Why This Matters
+  <a class="heading-link" href="#why-this-matters">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Having XConnect over L2TPv3 + IPSec in your toolkit is a game-changer. It gives you a way to:</p>
+<ul>
+<li>Simulate MPLS/VPLS environments in the lab</li>
+<li>Bridge VLANs across public or test networks securely</li>
+<li>Provide Layer 2 services over routed IP infrastructure</li>
+<li>Prototype new services before full deployment</li>
+</ul>
+<h2 id="keep-learning-keep-engineering">
+  Keep Learning, Keep Engineering
+  <a class="heading-link" href="#keep-learning-keep-engineering">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p>Whether you’re deep into SP architectures or just starting with advanced tunneling concepts, tools like XConnect remind us that networking is more than just routing and switching — it’s about enabling any service over any medium securely and reliably.</p>
+<p>Keep experimenting. Keep building. And most importantly — stay curious.</p>
+
+  </article>
+</section>
+
+  
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+      2025 -
+    
+    2026
+     Null0 Labs 
+    ·
+    
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>

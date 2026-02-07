@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog on Null0 Labs</title>
+    <link>https://null0labs.com/blog/</link>
+    <description>Recent content in Blog on Null0 Labs</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 27 Jul 2025 00:40:04 -0700</lastBuildDate>
+    <atom:link href="https://null0labs.com/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VXLAN EVPN Spine and Leaf</title>
+      <link>https://null0labs.com/blog/vxlan-evpn-leaf-and-spine/</link>
+      <pubDate>Sun, 27 Jul 2025 00:40:04 -0700</pubDate>
+      <guid>https://null0labs.com/blog/vxlan-evpn-leaf-and-spine/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;&#xA;  Introduction&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#introduction&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;The VXLAN EVPN Leaf and Spine architecture has become the backbone of scalable, multi-tenant network design. This blog post showcases a lab simulation built around this topology, highlighting configuration examples, verification tests, and insights into why this design is foundational for modern data centers.&lt;/p&gt;&#xA;&lt;p&gt;We&amp;rsquo;ll explore:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Why leaf and spine is ideal for multi-tenant overlays&lt;/li&gt;&#xA;&lt;li&gt;Configuration snippets from the lab topology&lt;/li&gt;&#xA;&lt;li&gt;Ping and trace outputs between tenant workloads&lt;/li&gt;&#xA;&lt;li&gt;Mnemonic VNI/VLAN/VRF schemes that reinforce automation and clarity&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;&lt;img src=&#34;feature.jpeg&#34; alt=&#34;Network&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>CIDR Cheatsheets</title>
+      <link>https://null0labs.com/blog/cidr-cheetsheets/</link>
+      <pubDate>Tue, 22 Jul 2025 00:40:04 -0700</pubDate>
+      <guid>https://null0labs.com/blog/cidr-cheetsheets/</guid>
+      <description>&lt;p&gt;CIDR Notation: Your Shortcut to Subnet Mastery Ever stared at a /27 and felt like it was judging you? Been there. Whether you’re diving into lab builds or trying to squeeze the most out of your IPv4 ranges, CIDR isn’t just notation—it’s strategy.&lt;/p&gt;&#xA;&lt;p&gt;Grab the sheets, print them, laminate them, tape them to your monitor—whatever helps.&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://www.ripe.net/about-us/press-centre/understanding-ip-addressing&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Understanding IP Addressing and CIDR Charts&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;ipv4cidrchart_2015.width-800.jpg&#34; alt=&#34;IPv4&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;ipv6chart_2015.width-800.png&#34; alt=&#34;IPv6&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Routing with VRF-Lite</title>
+      <link>https://null0labs.com/blog/vrf-lite-routing/</link>
+      <pubDate>Sun, 13 Jul 2025 00:40:04 -0700</pubDate>
+      <guid>https://null0labs.com/blog/vrf-lite-routing/</guid>
+      <description>&lt;p&gt;In a world where multi-tenancy is standard and overlapping IP addressing is a common reality, Virtual Routing and Forwarding Lite (VRF-Lite) emerges as a clean and powerful solution. Whether you&amp;rsquo;re an enterprise splitting departments or a service provider managing distinct customers, VRF-Lite can streamline your architecture—without extra hardware overhead.&lt;/p&gt;&#xA;&lt;h1 id=&#34;&#34;&gt;&#xA;  &#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;p&gt;Today, I’m showcasing a lab I designed that demonstrates how VRF-Lite achieves traffic isolation and address overlap in a Tiered ISP environment. This topology simulates two different customers using the same IP space, and yet, thanks to VRF-Lite, they remain entirely segregated.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>XConnect over L2TPv3 &#43; IPSec</title>
+      <link>https://null0labs.com/blog/xconnect-over-l2tpv3-ipsec/</link>
+      <pubDate>Mon, 07 Jul 2025 00:40:04 -0700</pubDate>
+      <guid>https://null0labs.com/blog/xconnect-over-l2tpv3-ipsec/</guid>
+      <description>&lt;p&gt;In a previous post, I looked at using L2TP tunnels to support wholesale broadband environments using PPPoE and dynamic RADIUS-based handoff. This time let’s pivot to a slightly different but powerful application: extending Layer 2 connectivity across routed infrastructure using XConnect over L2TPv3 secured with IPSec.&lt;/p&gt;&#xA;&lt;h2 id=&#34;why-xconnect--l2tpv3&#34;&gt;&#xA;  Why XConnect + L2TPv3?&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#why-xconnect--l2tpv3&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;XConnect, also known as pseudowire, enables us to extend an Ethernet segment (or even full 802.1Q trunk) transparently across an IP network. Combined with L2TPv3, which encapsulates Layer 2 frames in IP, and IPSec for encryption, we get:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Virgin Media to CityFibre: A Network Engineer’s Curiosity Unleashed</title>
+      <link>https://null0labs.com/blog/cityfibre/</link>
+      <pubDate>Sun, 06 Jul 2025 00:40:04 -0700</pubDate>
+      <guid>https://null0labs.com/blog/cityfibre/</guid>
+      <description>&lt;p&gt;Recently, I made the switch from Virgin Media to City Fibre for my home broadband. As a long-standing network engineer, the moment I saw City Fibre offering a selection of multiple ISPs delivered over a single GPON connection, my curiosity was immediately piqued.&lt;/p&gt;&#xA;&lt;p&gt;Naturally, I couldn’t resist diving under the hood to figure out how it works.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;the-premise&#34;&gt;&#xA;  The Premise&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#the-premise&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;CityFibre acts as a wholesale network, offering a broadband access layer to multiple ISPs via PPPoE and IPoE. You—the end user—choose your ISP during signup, and your connection is magically handed off to them, without changing physical infrastructure.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

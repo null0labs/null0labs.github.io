@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cidr on Null0 Labs</title>
+    <link>https://null0labs.com/tags/cidr/</link>
+    <description>Recent content in Cidr on Null0 Labs</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 22 Jul 2025 00:40:04 -0700</lastBuildDate>
+    <atom:link href="https://null0labs.com/tags/cidr/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CIDR Cheatsheets</title>
+      <link>https://null0labs.com/blog/cidr-cheetsheets/</link>
+      <pubDate>Tue, 22 Jul 2025 00:40:04 -0700</pubDate>
+      <guid>https://null0labs.com/blog/cidr-cheetsheets/</guid>
+      <description>&lt;p&gt;CIDR Notation: Your Shortcut to Subnet Mastery Ever stared at a /27 and felt like it was judging you? Been there. Whether you’re diving into lab builds or trying to squeeze the most out of your IPv4 ranges, CIDR isn’t just notation—it’s strategy.&lt;/p&gt;&#xA;&lt;p&gt;Grab the sheets, print them, laminate them, tape them to your monitor—whatever helps.&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://www.ripe.net/about-us/press-centre/understanding-ip-addressing&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Understanding IP Addressing and CIDR Charts&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;ipv4cidrchart_2015.width-800.jpg&#34; alt=&#34;IPv4&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;ipv6chart_2015.width-800.png&#34; alt=&#34;IPv6&#34;&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

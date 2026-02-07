@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cityfibre on Null0 Labs</title>
+    <link>https://null0labs.com/tags/cityfibre/</link>
+    <description>Recent content in Cityfibre on Null0 Labs</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 06 Jul 2025 00:40:04 -0700</lastBuildDate>
+    <atom:link href="https://null0labs.com/tags/cityfibre/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Virgin Media to CityFibre: A Network Engineer’s Curiosity Unleashed</title>
+      <link>https://null0labs.com/blog/cityfibre/</link>
+      <pubDate>Sun, 06 Jul 2025 00:40:04 -0700</pubDate>
+      <guid>https://null0labs.com/blog/cityfibre/</guid>
+      <description>&lt;p&gt;Recently, I made the switch from Virgin Media to City Fibre for my home broadband. As a long-standing network engineer, the moment I saw City Fibre offering a selection of multiple ISPs delivered over a single GPON connection, my curiosity was immediately piqued.&lt;/p&gt;&#xA;&lt;p&gt;Naturally, I couldn’t resist diving under the hood to figure out how it works.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;the-premise&#34;&gt;&#xA;  The Premise&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#the-premise&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;CityFibre acts as a wholesale network, offering a broadband access layer to multiple ISPs via PPPoE and IPoE. You—the end user—choose your ISP during signup, and your connection is magically handed off to them, without changing physical infrastructure.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

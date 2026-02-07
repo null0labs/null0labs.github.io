@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>L2TP on Null0 Labs</title>
+    <link>https://null0labs.com/tags/l2tp/</link>
+    <description>Recent content in L2TP on Null0 Labs</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 07 Jul 2025 00:40:04 -0700</lastBuildDate>
+    <atom:link href="https://null0labs.com/tags/l2tp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>XConnect over L2TPv3 &#43; IPSec</title>
+      <link>https://null0labs.com/blog/xconnect-over-l2tpv3-ipsec/</link>
+      <pubDate>Mon, 07 Jul 2025 00:40:04 -0700</pubDate>
+      <guid>https://null0labs.com/blog/xconnect-over-l2tpv3-ipsec/</guid>
+      <description>&lt;p&gt;In a previous post, I looked at using L2TP tunnels to support wholesale broadband environments using PPPoE and dynamic RADIUS-based handoff. This time let’s pivot to a slightly different but powerful application: extending Layer 2 connectivity across routed infrastructure using XConnect over L2TPv3 secured with IPSec.&lt;/p&gt;&#xA;&lt;h2 id=&#34;why-xconnect--l2tpv3&#34;&gt;&#xA;  Why XConnect + L2TPv3?&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#why-xconnect--l2tpv3&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;XConnect, also known as pseudowire, enables us to extend an Ethernet segment (or even full 802.1Q trunk) transparently across an IP network. Combined with L2TPv3, which encapsulates Layer 2 frames in IP, and IPSec for encryption, we get:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
