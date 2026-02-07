@@ -1,0 +1,94 @@
+baseurl = "https://null0labs.com"
+title = "Null0 Labs"
+theme = "hugo-coder"
+languagecode = "en"
+defaultcontentlanguage = "en"
+
+
+[pagination]
+pagerSize = 20
+
+[services]
+[services.disqus]
+shortname = "yourdiscussshortname"
+
+[markup.highlight]
+style = "github-dark"
+
+[params]
+  author = "Null0 Labs"
+  info = "Engineering networks. One loopback at a time."
+  description = "Best Channel for network engineering on youtube."
+  keywords = "youtube,networks,cisco,retro,juniper,palo,hp,asa,ipsec,loopbacks,null0,null0labs"
+  avatarurl = "images/logo.png"
+  #gravatar = "john.doe@example.com"
+
+  faviconSVG = "/img/favicon.svg"
+  favicon_32 = "/img/favicon-32x32.png"
+  favicon_16 = "/img/favicon-16x16.png"
+
+  since = 2019
+
+  enableTwemoji = true
+
+  colorScheme = "dark"
+  hidecolorschemetoggle = false
+
+  # customCSS = ["css/custom.css"]
+  # customSCSS = ["scss/custom.scss"]
+  # customJS = ["js/custom.js"]
+
+[taxonomies]
+  category = "categories"
+  series = "series"
+  tag = "tags"
+  author = "authors"
+
+# Social links
+[[params.social]]
+  name = "YouTube"
+  icon = "fa-brands fa-youtube fa-2x"
+  weight = 1
+  url = "https://youtube.com/@null0labs"
+[[params.social]]
+  name = "Instagram"
+  icon = "fa-brands fa-instagram fa-2x"
+  weight = 2
+  url = "https://instagram.com/null0labs"
+[[params.social]]
+  name = "X"
+  icon = "fa-brands fa-x-twitter fa-2x"
+  weight = 3
+  url = "https://x.com/null0labs"
+[[params.social]]
+  name = "Facebook"
+  icon = "fa-brands fa-facebook fa-2x"
+  weight = 4
+  url = "https://facebook.com/null0labs"
+[[params.social]]
+  name = "Linkedin"
+  icon = "fa-brands fa-linkedin fa-2x"
+  weight = 5
+  url = "https://linkedin.com/in/mlewisonline"
+[[params.social]]
+  name = "Github"
+  icon = "fa-brands fa-github fa-2x"
+  weight = 5
+  url = "https://github.com/null0labs"
+[[params.social]]
+  name = "patreon"
+  icon = "fa-brands fa-patreon fa-2x"
+  weight = 5
+  url = "https://patreon.com/Null0Labs"
+
+
+  
+# Menu links
+#[[menu.main]]
+#  name = "Blog"
+#  weight = 1
+#  url  = "posts/"
+#[[menu.main]]
+#  name = "About"
+#  weight = 2
+#  url = "about/"
