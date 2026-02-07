@@ -2,14 +2,63 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://null0labs.com/blog/</loc>
+    <lastmod>2025-07-27T00:40:04-07:00</lastmod>
+  </url><url>
+    <loc>https://null0labs.com/tags/blog/</loc>
+    <lastmod>2025-07-27T00:40:04-07:00</lastmod>
+  </url><url>
+    <loc>https://null0labs.com/</loc>
+    <lastmod>2025-07-27T00:40:04-07:00</lastmod>
+  </url><url>
+    <loc>https://null0labs.com/tags/routing/</loc>
+    <lastmod>2025-07-27T00:40:04-07:00</lastmod>
+  </url><url>
+    <loc>https://null0labs.com/tags/</loc>
+    <lastmod>2025-07-27T00:40:04-07:00</lastmod>
+  </url><url>
+    <loc>https://null0labs.com/tags/vrf-lite/</loc>
+    <lastmod>2025-07-27T00:40:04-07:00</lastmod>
+  </url><url>
+    <loc>https://null0labs.com/blog/vxlan-evpn-leaf-and-spine/</loc>
+    <lastmod>2025-07-27T00:40:04-07:00</lastmod>
+  </url><url>
+    <loc>https://null0labs.com/tags/cidr/</loc>
+    <lastmod>2025-07-22T00:40:04-07:00</lastmod>
+  </url><url>
+    <loc>https://null0labs.com/blog/cidr-cheetsheets/</loc>
+    <lastmod>2025-07-22T00:40:04-07:00</lastmod>
+  </url><url>
+    <loc>https://null0labs.com/tags/ipaddresses/</loc>
+    <lastmod>2025-07-22T00:40:04-07:00</lastmod>
+  </url><url>
+    <loc>https://null0labs.com/blog/vrf-lite-routing/</loc>
+    <lastmod>2025-07-13T00:40:04-07:00</lastmod>
+  </url><url>
+    <loc>https://null0labs.com/tags/l2tp/</loc>
+    <lastmod>2025-07-07T00:40:04-07:00</lastmod>
+  </url><url>
+    <loc>https://null0labs.com/tags/xconnect/</loc>
+    <lastmod>2025-07-07T00:40:04-07:00</lastmod>
+  </url><url>
+    <loc>https://null0labs.com/blog/xconnect-over-l2tpv3-ipsec/</loc>
+    <lastmod>2025-07-07T00:40:04-07:00</lastmod>
+  </url><url>
+    <loc>https://null0labs.com/tags/broadband/</loc>
+    <lastmod>2025-07-06T00:40:04-07:00</lastmod>
+  </url><url>
+    <loc>https://null0labs.com/tags/cityfibre/</loc>
+    <lastmod>2025-07-06T00:40:04-07:00</lastmod>
+  </url><url>
+    <loc>https://null0labs.com/blog/cityfibre/</loc>
+    <lastmod>2025-07-06T00:40:04-07:00</lastmod>
+  </url><url>
+    <loc>https://null0labs.com/about/</loc>
+  </url><url>
     <loc>https://null0labs.com/authors/</loc>
   </url><url>
     <loc>https://null0labs.com/categories/</loc>
   </url><url>
-    <loc>https://null0labs.com/</loc>
-  </url><url>
     <loc>https://null0labs.com/series/</loc>
-  </url><url>
-    <loc>https://null0labs.com/tags/</loc>
   </url>
 </urlset>
